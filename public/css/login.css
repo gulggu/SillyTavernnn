@@ -1,8 +1,15 @@
+/* ==========================================================================
+   Login Page Styles
+   - Login screen layout, user selection cards, and form inputs
+   ========================================================================== */
+
+/* --- Login Shadow Popup --- */
 body.login #shadow_popup {
     opacity: 1;
     display: flex;
 }
 
+/* --- Logo Block --- */
 body.login .logo {
     max-width: 30px;
 }
@@ -13,6 +20,7 @@ body.login #logoBlock {
     gap: 10px;
 }
 
+/* --- User Selection Cards --- */
 body.login .userSelect {
     display: flex;
     flex-direction: column;
@@ -31,6 +39,7 @@ body.login .userSelect {
     overflow: hidden;
 }
 
+/* --- User Name/Handle Text --- */
 body.login .userSelect .userName,
 body.login .userSelect .userHandle {
     width: 100%;
@@ -39,10 +48,12 @@ body.login .userSelect .userHandle {
     white-space: nowrap;
 }
 
+/* --- Hover State --- */
 body.login .userSelect:hover {
     background-color: var(--black30a);
 }
 
+/* --- Form Input Blocks --- */
 body.login #handleEntryBlock,
 body.login #passwordEntryBlock,
 body.login #passwordRecoveryBlock {

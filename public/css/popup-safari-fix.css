@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Safari-Specific Popup Fixes
+   - Workarounds for Safari/iOS popup height and layout issues
+   ========================================================================== */
+
 /* iPhone copium land */
 body.safari .popup .popup-body:has(.maximized_textarea),
 body.safari .popup.large_dialogue_popup .popup-body {
