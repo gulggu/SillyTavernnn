@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Select2 Dropdown Overrides
+   - Theme-consistent styling for Select2 dropdown components
+   - Custom checkbox indicators for multi-select options
+   - Choice tags, search input, and clearable selection styles
+   ========================================================================== */
+
 /* Customize the Select2 container */
 .select2-container {
     color: var(--SmartThemeBodyColor);
@@ -16,6 +23,7 @@
     user-select: none;
 }
 
+/* --- Selection Clearable Button --- */
 .select2-container .select2-selection.select2-selection--single.select2-selection--clearable .select2-selection__clear {
     top: 0;
     right: 25px;
@@ -93,6 +101,7 @@
     background-color: var(--SmartThemeBodyColor);
 }
 
+/* --- Multi/Single Selection Container --- */
 .select2-container .select2-selection--multiple,
 .select2-container .select2-selection--single {
     background-color: var(--black30a);
@@ -118,6 +127,7 @@
     filter: brightness(0.5);
 }
 
+/* --- Choice Tag Pills --- */
 .select2-container .select2-selection--multiple .select2-selection__choice,
 .select2-container .select2-selection--single .select2-selection__choice {
     border-radius: 5px;
@@ -166,6 +176,7 @@
     padding-left: 2em;
 }
 
+/* --- Custom Checkbox for Options --- */
 /* Add the custom checkbox */
 .select2-results__option::before {
     content: '';
@@ -204,12 +215,14 @@
     display: none;
 }
 
+/* --- Choice Display Alignment --- */
 .select2-selection__choice__display {
     /* Fix weird alignment of the inside block */
     margin-left: 3px;
     margin-right: 1px;
 }
 
+/* --- Choice Remove Styling --- */
 /* Styling for choice remove icon */
 span.select2.select2-container .select2-selection__choice__remove {
     cursor: pointer;
@@ -223,6 +236,7 @@ span.select2.select2-container .select2-selection__choice__remove:hover {
     background-color: var(--white30a);
 }
 
+/* --- Clickable Choice Variants --- */
 /* Custom class to support styling to show clickable choice options */
 .select2_choice_clickable+span.select2-container .select2-selection__choice__display {
     cursor: pointer;
