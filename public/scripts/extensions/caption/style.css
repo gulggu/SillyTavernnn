@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Caption Extension
+   - Hides the image upload form (handled via extension UI)
+   ========================================================================== */
+
 #img_form {
     display: none;
 }

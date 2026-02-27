@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Mobile & Responsive Styles
+   - Media queries for tablets (≤1000px), landscape phones, portrait phones (≤450px)
+   - iOS-specific fixes using @supports (-webkit-touch-callout: none)
+   - Drawer, panel, and popup mobile adaptations
+   ========================================================================== */
+
 /*will apply to anything 1000px or less. this catches ipads, horizontal phones, and vertical phones)*/
 @media screen and (max-width: 1000px) {
 
@@ -10,6 +17,7 @@
         flex-basis: 100%;
     }
 
+    /* --- Panel & Layout Overrides --- */
     #rm_button_panel_pin_div,
     #lm_button_panel_pin_div {
         display: none;
@@ -186,6 +194,7 @@
         /* width: 100%; */
     }
 
+    /* --- Drawer & Panel Sizing --- */
     .drawer-content {
         min-width: unset;
         width: 100dvw;
@@ -298,6 +307,7 @@
         display: none;
     }
 
+    /* --- Mobile Navigation Panels --- */
     #right-nav-panel,
     #left-nav-panel,
     #floatingPrompt,
@@ -373,6 +383,7 @@
         display: none;
     }
 
+    /* --- wAIfu Mode Mobile --- */
     body.waifuMode #sheld {
         height: 40vh;
         height: 40dvh;

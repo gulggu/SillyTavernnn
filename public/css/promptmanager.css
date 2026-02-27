@@ -1,7 +1,17 @@
+/* ==========================================================================
+   Prompt Manager
+   - Completion prompt list with drag-and-drop ordering
+   - Prompt editor popup with form controls
+   - Token count display and prompt enable/disable toggles
+   - Export format options
+   ========================================================================== */
+
+/* --- Caution Text --- */
 #completion_prompt_manager .caution {
     color: var(--fullred);
 }
 
+/* --- Prompt List Container --- */
 #completion_prompt_manager #completion_prompt_manager_list {
     display: flex;
     flex-direction: column;
@@ -17,6 +27,7 @@
     min-height: 1px;
 }
 
+/* --- List Item Grid Layout --- */
 #completion_prompt_manager #completion_prompt_manager_list li {
     display: grid;
     grid-template-columns: 4fr 80px 45px;
@@ -42,6 +53,7 @@
 }
 
 
+/* --- Token Count Display --- */
 #completion_prompt_manager #completion_prompt_manager_list li.completion_prompt_manager_list_head .prompt_manager_prompt_tokens,
 #completion_prompt_manager #completion_prompt_manager_list li.completion_prompt_manager_prompt .prompt_manager_prompt_tokens {
     font-size: calc(var(--mainFontSize)*0.9);
@@ -62,6 +74,7 @@
     border: 1px solid var(--SmartThemeBorderColor);
 }
 
+/* --- Prompt Item Controls --- */
 #completion_prompt_manager #completion_prompt_manager_list li.completion_prompt_manager_prompt .prompt_manager_prompt_controls {
     display: flex;
     justify-content: space-between;
@@ -90,6 +103,7 @@
     opacity: 1;
 }
 
+/* --- Editor Popup --- */
 #completion_prompt_manager_popup #completion_prompt_manager_popup_edit,
 #completion_prompt_manager_popup #completion_prompt_manager_popup_chathistory_edit,
 #completion_prompt_manager_popup #completion_prompt_manager_popup_dialogueexamples_edit,
@@ -106,6 +120,7 @@
     flex: 1;
 }
 
+/* --- Editor Form Layout --- */
 #completion_prompt_manager_popup .completion_prompt_manager_popup_entry_form {
     height: 100%;
     display: flex;
@@ -181,6 +196,7 @@
     cursor: grab;
 }
 
+/* --- Prompt Name & Inspect Actions --- */
 #completion_prompt_manager #completion_prompt_manager_list .completion_prompt_manager_prompt_name {
     white-space: nowrap;
     overflow: hidden;
@@ -195,6 +211,7 @@
     text-decoration: underline;
 }
 
+/* --- Disabled Prompt State --- */
 #completion_prompt_manager #completion_prompt_manager_list .completion_prompt_manager_prompt_disabled .completion_prompt_manager_prompt_name,
 #completion_prompt_manager #completion_prompt_manager_list .completion_prompt_manager_prompt_disabled .completion_prompt_manager_prompt_name .prompt-manager-inspect-action {
     color: var(--white30a);
@@ -219,6 +236,7 @@
     margin-bottom: 0.5em;
 }
 
+/* --- Header & Footer --- */
 #completion_prompt_manager .completion_prompt_manager_header {
     display: flex;
     flex-direction: row;
@@ -275,6 +293,7 @@
     opacity: 0.8;
 }
 
+/* --- Drag Handle --- */
 #completion_prompt_manager #completion_prompt_manager_list .completion_prompt_manager_prompt .drag-handle:not(.ui-sortable-handle) {
     display: none;
 }
@@ -297,6 +316,7 @@
     font-size: 1em;
 }
 
+/* --- Export Format Popup --- */
 #prompt-manager-export-format-popup {
     padding: 0.25em;
     display: none;
@@ -310,6 +330,7 @@
     margin-top: 0;
 }
 
+/* --- Popup Container Positioning --- */
 #completion_prompt_manager_popup {
     overflow-y: auto;
     height: calc(100% - var(--topBarBlockSize));
@@ -349,6 +370,7 @@
     justify-content: space-between;
 }
 
+/* --- Mobile Responsive --- */
 @media screen and (max-width: 412px) {
     #completion_prompt_manager_popup {
         max-width: 100%;

@@ -1,7 +1,15 @@
+/* ==========================================================================
+   Welcome Panel & Recent Chats
+   - Welcome screen with version info, shortcuts, and recent chat list
+   - Recent chat items with avatars, messages, and stats
+   ========================================================================== */
+
+/* --- Assistant Message Button Hide --- */
 #chat .mes[type="assistant_message"] .mes_button {
     display: none;
 }
 
+/* --- Welcome Panel Layout --- */
 .welcomePanel {
     display: flex;
     flex-direction: column;
@@ -21,6 +29,7 @@
     display: none;
 }
 
+/* --- Bubble Chat Integration --- */
 body.bubblechat .welcomePanel {
     border-radius: 10px;
     background-color: var(--SmartThemeBotMesBlurTintColor);
@@ -32,6 +41,7 @@ body.hideChatAvatars .welcomePanel .recentChatList .recentChat .avatar {
     display: none;
 }
 
+/* --- Welcome Header --- */
 .welcomePanel .welcomeHeader {
     display: flex;
     flex-direction: row;
@@ -65,6 +75,7 @@ body.hideChatAvatars .welcomePanel .recentChatList .recentChat .avatar {
     height: 30px;
 }
 
+/* --- Shortcuts Bar --- */
 .welcomePanel .welcomeShortcuts {
     display: flex;
     flex-direction: row;
@@ -80,6 +91,7 @@ body.hideChatAvatars .welcomePanel .recentChatList .recentChat .avatar {
     font-size: calc(var(--mainFontSize) * 1.1);
 }
 
+/* --- Recent Chat List --- */
 .welcomeRecent .recentChatList {
     display: flex;
     flex-direction: column;
@@ -106,6 +118,7 @@ body.hideChatAvatars .welcomePanel .recentChatList .recentChat .avatar {
     padding: 10px;
 }
 
+/* --- Individual Chat Item --- */
 .welcomeRecent .recentChatList .recentChat {
     display: flex;
     flex-direction: row;
@@ -153,6 +166,7 @@ body.hideChatAvatars .welcomePanel .recentChatList .recentChat .avatar {
     flex: 1;
 }
 
+/* --- Chat Stats & Actions --- */
 .welcomeRecent .recentChatList .recentChat .chatActions {
     display: flex;
     flex-direction: row;
@@ -231,6 +245,7 @@ body.big-avatars .welcomeRecent .recentChatList .recentChat .chatMessageContaine
     color: var(--SmartThemeQuoteColor);
 }
 
+/* --- Mobile Responsive --- */
 @media screen and (max-width: 1000px) {
     .welcomePanel .welcomeShortcuts a span {
         display: none;

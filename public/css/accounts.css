@@ -1,3 +1,8 @@
+/* ==========================================================================
+   User Account Styles
+   - Styles for user account selection items in the login/account management UI
+   ========================================================================== */
+
 .userAccount {
     border: 1px solid var(--SmartThemeBorderColor);
     padding: 5px 10px;

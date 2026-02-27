@@ -1,3 +1,9 @@
+/* ==========================================================================
+   Chat Backups
+   - Styles for the chat backup list panel, items, and actions
+   ========================================================================== */
+
+/* --- Backup List Container --- */
 .chatBackupsList {
     display: flex;
     flex-direction: column;
@@ -16,6 +22,7 @@
     display: none;
 }
 
+/* --- Backup List Item --- */
 .chatBackupsListItem {
     display: flex;
     flex-wrap: wrap;
@@ -31,6 +38,7 @@
     background: var(--black30a);
 }
 
+/* --- Item Name & Info --- */
 .chatBackupsListItemName {
     opacity: 0.75;
     flex-grow: 1;
@@ -43,6 +51,7 @@
     opacity: 0.75;
 }
 
+/* --- Item Actions --- */
 .chatBackupsListItemActions {
     display: flex;
     align-items: center;

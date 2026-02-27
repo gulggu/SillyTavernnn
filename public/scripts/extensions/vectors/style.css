@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Vectors Extension
+   - Visual indicator (green dot) for vectorized messages in chat
+   ========================================================================== */
+
 .mes.vectorized .name_text::after {
     content: '🟢';
     margin-left: 5px;

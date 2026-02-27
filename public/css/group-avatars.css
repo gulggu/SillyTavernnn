@@ -1,3 +1,10 @@
+/* ==========================================================================
+   Group Avatar Collage
+   - Composite avatar layouts for group chats (2, 3, or 4 member collages)
+   - Each collage variant positions member images in a grid within a circle
+   ========================================================================== */
+
+/* --- Base Collage Container --- */
 .avatar_collage {
     border-radius: 50%;
     position: relative;
@@ -9,6 +16,7 @@
     overflow: hidden;
 }
 
+/* --- 2-Member Layout --- */
 .collage_2 .img_1 {
     left: 0;
     top: 0;
@@ -27,6 +35,7 @@
     height: 100%;
 }
 
+/* --- 3-Member Layout --- */
 .collage_3 .img_1 {
     left: 0;
     top: 0;
@@ -54,6 +63,7 @@
     height: 50%;
 }
 
+/* --- 4-Member Layout --- */
 .collage_4 .img_1 {
     left: 0;
     top: 0;

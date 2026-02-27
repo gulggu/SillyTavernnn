@@ -1,9 +1,19 @@
+/* ==========================================================================
+   Toggle-Dependent Visibility & Conditional Styles
+   - Body class–driven display rules (TTS, SD, translate, avatars, etc.)
+   - Character list grid/big-avatar mode layouts
+   - Bubble chat, document style, wAIfu mode, movingUI modes
+   - Blur removal, shadow removal, and advanced formatting toggles
+   ========================================================================== */
+
+/* --- CSS Custom Properties for Big Avatars --- */
 :root {
     --big-avatar-height-factor: 1.8;
     --big-avatar-width-factor: 1.2;
     --big-avatar-border-factor: 5;
 }
 
+/* --- Extension Button Visibility (TTS/SD/Translate) --- */
 body.tts .mes[is_system="true"] .mes_narrate {
     display: none;
 }
@@ -18,6 +28,7 @@ body:not(.tts) #ttsExtensionNarrateAll {
     display: none;
 }
 
+/* --- UI Element Visibility Toggles --- */
 body.no-hotswap .hotswap,
 body.no-hotswap .hotswap~hr,
 body.no-timer .mes_timer,
@@ -35,6 +46,7 @@ body.no-hotswap #CharListButtonAndHotSwaps .flex-container {
     flex-flow: row;
 }
 
+/* --- Hidden Chat Avatars Adjustments --- */
 body.hideChatAvatars .last_mes:not(.smallSysMes) {
     padding-bottom: 20px !important;
 }
@@ -47,6 +59,7 @@ body.hideChatAvatars .swipe_left {
     left: 7px;
 }
 
+/* --- Avatar Shape Variants --- */
 body.square-avatars .avatar,
 body.square-avatars .avatar img {
     border-radius: var(--avatar-base-border-radius) !important;
@@ -159,7 +172,7 @@ body.charListGrid #rm_print_characters_block .ch_additional_info {
     display: none;
 }
 
-/*big avatars mode page-wide changes*/
+/* --- Big Avatars Mode --- */
 
 body.big-avatars .character_select .avatar,
 body.big-avatars .group_select .avatar,
@@ -261,6 +274,7 @@ body.big-avatars .avatars_inline_small .avatar_collage {
     max-width: calc(var(--avatar-base-width) * var(--big-avatar-width-factor) * var(--inline-avatar-small-factor));
 }
 
+/* --- Big Avatar Collage Border Radius --- */
 /* border radius for big avatars collages */
 
 body.big-avatars .collage_2 .img_1 {
@@ -469,6 +483,7 @@ body.noShadows * {
     text-shadow: none !important;
 }
 
+/* --- Expanded Message Actions --- */
 body.expandMessageActions .mes .mes_buttons .extraMesButtons {
     display: inherit !important;
 }
@@ -477,15 +492,18 @@ body.expandMessageActions .mes .mes_buttons .extraMesButtonsHint {
     display: none !important;
 }
 
+/* --- Streaming Controls --- */
 #smooth_streaming_control:has(#smooth_streaming:not(:checked))~#smooth_streaming_speed_control,
 #smooth_streaming_control:has(#smooth_streaming:not(:checked))~#smooth_streaming_no_think_control {
     display: none;
 }
 
+/* --- Markdown Hotkey Icon --- */
 .mdhotkey_icon {
     opacity: 0.6;
 }
 
+/* --- Trim Spaces Warning --- */
 label[for="trim_spaces"]:has(input:checked) i.warning {
     display: none;
 }
@@ -495,6 +513,7 @@ label[for="trim_spaces"]:not(:has(input:checked)) small {
     opacity: 1;
 }
 
+/* --- Claude Function Prefill Warning --- */
 #claude_function_prefill_warning {
     display: none;
     color: red;
@@ -508,6 +527,7 @@ label[for="trim_spaces"]:not(:has(input:checked)) small {
     margin: 10px 0;
 }
 
+/* --- API-Specific Conditional Rules --- */
 #mistralai_other_models:empty {
     display: none;
 }
@@ -516,6 +536,7 @@ label[for="trim_spaces"]:not(:has(input:checked)) small {
     filter: brightness(0.5);
 }
 
+/* --- Preset Binding Toggle --- */
 #bind_preset_to_connection:checked~.toggleOff {
     display: none;
 }
@@ -528,6 +549,7 @@ label[for="bind_preset_to_connection"]:has(input:checked) {
     color: var(--active);
 }
 
+/* --- Chat Completion Toggle Indicators --- */
 #openai_settings input[type="checkbox"]:not(:checked)~[data-cc-toggle],
 #openai_settings input[type="checkbox"]:not(:checked)~*:has([data-cc-toggle]),
 #openai_settings [data-cc-toggle="false"]>.icon-supported,
@@ -561,10 +583,12 @@ label[for="bind_preset_to_connection"]:has(input:checked) {
     cursor: not-allowed;
 }
 
+/* --- Request Images Block --- */
 #request_images_block:has(#openai_request_images:not(:checked)) #request_images_settings {
     display: none;
 }
 
+/* --- Adaptive Parameters Block --- */
 #adaptive_p_block:has([data-tg-samplers="adaptive_target"][style*="display: none"]):has([data-tg-samplers="adaptive_decay"][style*="display: none"]) {
     display: none;
 }

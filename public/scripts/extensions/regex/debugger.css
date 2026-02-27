@@ -1,4 +1,12 @@
-/* Styles for the debugger UI */
+/* ==========================================================================
+   Regex Debugger
+   - Regex rule list with drag-and-drop ordering
+   - Test input/output panels with step-by-step execution
+   - Diff highlighting (green=added, red=deleted)
+   - Expanded view with side navigation
+   ========================================================================== */
+
+/* --- Debugger Rule List --- */
 #regex_debugger_rules {
     margin: 10px 0;
 }
@@ -12,6 +20,7 @@
     position: relative;
 }
 
+/* --- Rule Card --- */
 .regex-debugger-rule {
     display: flex;
     align-items: center;
@@ -78,6 +87,7 @@
     margin: 0;
 }
 
+/* --- Test Input/Output --- */
 #regex_debugger_raw_input {
     min-height: 1.8em;
 }
@@ -107,6 +117,7 @@
     text-align: left;
 }
 
+/* --- Step Display --- */
 .step-header {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -121,7 +132,6 @@
     text-align: left;
 }
 
-/* Classes to replace inline styles */
 .regex-debugger-no-rules {
     padding: 10px;
     text-align: center;
@@ -133,7 +143,7 @@
     padding: 10px;
 }
 
-/* Styles for statistics */
+/* --- Summary Statistics --- */
 .step-header {
     display: flex;
     justify-content: space-between;
@@ -156,6 +166,7 @@
     font-size: 0.9em;
 }
 
+/* --- Diff Highlighting --- */
 .regex-debugger-tester .results-header {
     position: relative;
     margin: 10px 0;
@@ -165,7 +176,6 @@
     text-align: left;
 }
 
-/* Styles for statistics and highlighting additions */
 .step-header {
     display: flex;
     justify-content: space-between;
@@ -193,14 +203,12 @@
     font-size: 0.9em;
 }
 
-/* New highlight color for added text */
 mark.green_hl {
     background-color: #28a745;
     /* A standard green color */
     color: white;
 }
 
-/* New highlight color for deleted text */
 mark.red_hl {
     background-color: #dc3545;
     /* A standard red color */
@@ -208,7 +216,7 @@ mark.red_hl {
     text-decoration: line-through;
 }
 
-/* Styles for the expanded view with navigation */
+/* --- Expanded View Layout --- */
 .expanded-regex-container {
     display: flex;
     height: 75vh;

@@ -1,3 +1,9 @@
+/* ==========================================================================
+   Memory / Summary Extension
+   - Summary content textarea, frozen/skip controls, and popout panel
+   ========================================================================== */
+
+/* --- Memory Settings Layout --- */
 #memory_settings {
     display: flex;
     flex-direction: column;
@@ -23,6 +29,7 @@ label[for="memory_frozen"] input {
     margin-right: 10px;
 }
 
+/* --- Memory Controls --- */
 .memory_contents_controls {
     display: flex;
     flex-direction: row;
@@ -34,6 +41,7 @@ label[for="memory_frozen"] input {
     margin-left: 2px;
 }
 
+/* --- Summary Settings --- */
 #summarySettingsBlock {
     display: flex;
     flex-direction: column;

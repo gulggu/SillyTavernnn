@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Token Counter Extension
+   - Token display chunks and auto-sizing textarea/ID fields
+   ========================================================================== */
+
 #tokenized_chunks_display > code {
     color: black;
     text-shadow: none;

@@ -1,3 +1,11 @@
+/* ==========================================================================
+   Log Probabilities Viewer
+   - Floating panel for viewing token-level log probabilities
+   - Token candidate selection and highlighting
+   - Color-coded probability tint classes
+   ========================================================================== */
+
+/* --- Viewer Panel Container --- */
 #logprobsViewer {
     overflow-y: auto;
     max-width: 90dvw;
@@ -19,6 +27,7 @@
     width: calc(((100dvw - var(--sheldWidth)) / 2) - 1px);
 }
 
+/* --- Panel Header & Controls --- */
 .logprobs_panel_header {
     display: flex;
     justify-content: space-between;
@@ -52,6 +61,7 @@
     cursor: pointer;
 }
 
+/* --- Generation Output Display --- */
 #logprobs_generation_output {
     user-select: none;
     height: 100%;
@@ -59,6 +69,7 @@
     word-break: break-all;
 }
 
+/* --- Empty State --- */
 .logprobs_empty_state {
     display: flex;
     justify-content: center;
@@ -68,6 +79,7 @@
     text-align: center;
 }
 
+/* --- Output Prefix Hover Effects --- */
 .logprobs_output_prefix {
     opacity: 0.5;
 }
@@ -80,6 +92,7 @@
     background-color: rgba(255, 0, 50, 0.4);
 }
 
+/* --- Candidate List Grid --- */
 .logprobs_candidate_list {
     grid-row-start: 3;
     grid-row-end: 4;
@@ -111,6 +124,7 @@
     background-color: rgba(0, 0, 0, 0.3);
 }
 
+/* --- Probability Color Tints --- */
 .logprobs_tint_0 {
     background-color: rgba(255, 255, 0, 0.05);
 }

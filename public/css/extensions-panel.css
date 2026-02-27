@@ -1,8 +1,15 @@
-/* Extensions */
+/* ==========================================================================
+   Extensions Panel
+   - Extension list management UI, toggle controls, and settings layout
+   - Extension block info, status indicators, and toolbar
+   ========================================================================== */
+
+/* --- Extension URL Input --- */
 #extensions_url {
     display: block;
 }
 
+/* --- Extension Block Inputs --- */
 .extensions_block input[type="submit"]:hover {
     background-color: green;
 }
@@ -19,6 +26,7 @@ label[for="extensions_autoconnect"] {
     margin: 0 !important;
 }
 
+/* --- Extension URL Block --- */
 .extensions_url_block {
     display: flex;
     align-items: center;
@@ -35,6 +43,7 @@ label[for="extensions_autoconnect"] {
     padding: 0.05px;
 }
 
+/* --- Extension Info & Status --- */
 .extensions_info {
     text-align: left;
 }
@@ -81,6 +90,7 @@ label[for="extensions_autoconnect"] {
     font-weight: normal;
 }
 
+/* --- Extension Block Card --- */
 .extensions_info .extension_block {
     display: flex;
     flex-wrap: nowrap;
@@ -108,6 +118,7 @@ label[for="extensions_autoconnect"] {
     color: var(--SmartThemeBodyColor);
 }
 
+/* --- Extension State Classes --- */
 .extensions_info .extension_name.update_available {
     color: limegreen;
 }
@@ -125,6 +136,7 @@ input.extension_missing[type="checkbox"] {
     display: inline-flex;
 }
 
+/* --- Extension Settings Order Fix --- */
 /* Fixes order of settings for extensions */
 #extensions_settings,
 #extensions_settings2 {
@@ -151,6 +163,7 @@ input.extension_missing[type="checkbox"] {
     flex-wrap: nowrap;
 }
 
+/* --- Extensions Toolbar --- */
 .extensions_toolbar {
     top: 0;
     position: sticky;

@@ -1,8 +1,14 @@
+/* ==========================================================================
+   MiniMax TTS Settings
+   - Custom voice item cards and empty list state
+   ========================================================================== */
+
 .minimax_tts_settings>.tts_block {
     gap: 5px;
     margin: 5px 0;
 }
 
+/* --- Custom Voice Item --- */
 .minimax-custom-item {
     display: flex;
     justify-content: space-between;
@@ -32,6 +38,7 @@
     font-size: 12px;
 }
 
+/* --- Empty List State --- */
 .minimax-empty-list {
     color: #888;
     font-style: italic;

@@ -1,3 +1,8 @@
+/* ==========================================================================
+   Connection Manager Extension
+   - Connection profile details display and loading spinner
+   ========================================================================== */
+
 #connection_profile_details_content {
     margin: 5px 0;
 }
