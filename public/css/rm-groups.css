@@ -1,5 +1,11 @@
-/* GROUP CHATS */
+/* ==========================================================================
+   Group Chat Management
+   - Group creation, member management, and group chat list
+   - Member cards with enable/disable/speak actions
+   - Group selection in character list
+   ========================================================================== */
 
+/* --- Pagination --- */
 .group_pagination {
     display: flex;
     justify-content: center;
@@ -22,6 +28,7 @@
     border-radius: 10px;
 }
 
+/* --- Group Chat List Container --- */
 #rm_group_chats_block {
     display: none;
     align-items: flex-start;
@@ -35,6 +42,7 @@
     margin-bottom: 5px;
 }
 
+/* --- Group Buttons & Controls --- */
 #rm_group_buttons>div {
     display: flex;
     flex-direction: column;
@@ -64,6 +72,7 @@
     min-width: 200px;
 }
 
+/* --- Group Member Lists --- */
 #rm_group_members,
 #rm_group_add_members {
     margin-top: 0.25rem;
@@ -82,6 +91,7 @@
     color: rgb(190, 0, 0);
 }
 
+/* --- Empty State Messages --- */
 #rm_group_members:empty {
     width: 100%;
     padding: 0.5em 0;
@@ -135,6 +145,7 @@
     flex-grow: 1;
 }
 
+/* --- Member Card Layout --- */
 .group_member {
     display: flex;
     flex-direction: row;
@@ -161,6 +172,7 @@
     gap: 0px;
 }
 
+/* --- Member Action Buttons --- */
 #rm_group_members .right_menu_button,
 #rm_group_add_members .right_menu_button {
     padding: 0px;
@@ -192,6 +204,7 @@
     filter: drop-shadow(0px 0px 5px rgb(153, 255, 153));
 }
 
+/* --- Action Visibility Rules --- */
 /* Rules for icon display */
 #rm_group_add_members .right_menu_button:not([data-action="add"], [data-action="view"]),
 #rm_group_members .right_menu_button[data-action="add"],
@@ -200,6 +213,7 @@
     display: none;
 }
 
+/* --- Group Select Card --- */
 .group_select {
     display: flex;
     flex-direction: row;

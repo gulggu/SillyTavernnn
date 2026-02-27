@@ -1,3 +1,11 @@
+/* ==========================================================================
+   World Info / Lore Book Editor
+   - World Info entry forms, field controls, and editor layout
+   - Entry list, sorting, search, and conditional display
+   - WI-specific Select2 and regex integration styles
+   ========================================================================== */
+
+/* --- World Info Select Block --- */
 .world_info_select_block {
     display: flex;
     flex-direction: row;
@@ -10,6 +18,7 @@
     line-height: 0.1;
 }
 
+/* --- World Popup Container --- */
 #world_popup {
     min-height: 100px;
     min-width: 100px;
@@ -20,6 +29,7 @@
     overflow-y: hidden;
 }
 
+/* --- Entry Content Layout --- */
 .WIEntryContentAndMemo {
     width: 100% !important;
     flex-wrap: nowrap !important;
@@ -29,6 +39,7 @@
     flex: 1;
 }
 
+/* --- Popup Bottom Controls --- */
 #world_popup_bottom_holder {
     display: flex;
     flex-flow: row;
@@ -51,6 +62,7 @@
     flex-grow: 1;
 }
 
+/* --- Entry List --- */
 #world_popup_entries_list {
     flex-grow: 1;
     overflow-y: auto;
@@ -73,6 +85,7 @@
     opacity: 0.8;
 }
 
+/* --- Entry Form Controls --- */
 .world_entry_form_control {
     display: flex;
     flex-direction: column;
@@ -168,6 +181,7 @@
     background-color: var(--SmartThemeShadowColor);
 } */
 
+/* --- Editor Select & Sorting --- */
 #world_editor_select {
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -203,6 +217,7 @@
     color: var(--SmartThemeQuoteColor);
 }
 
+/* --- Entry Card & State --- */
 .wi-card-entry {
     border: 1px solid;
     border-color: var(--SmartThemeBorderColor);
@@ -245,6 +260,7 @@
     overflow-x: hidden;
 }
 
+/* --- Regex Integration in WI --- */
 span.select2-container .select2-selection__choice__display:has(> .regex_item),
 span.select2-container .select2-results__option:has(> .result_block .regex_item) {
     background-color: #D27D2D30;
@@ -276,6 +292,7 @@ select.keyselect+span.select2-container .select2-selection--multiple {
     padding-right: 30px;
 }
 
+/* --- Input Type Switch Icon --- */
 .switch_input_type_icon {
     cursor: pointer;
     font-weight: bold;
@@ -305,6 +322,7 @@ select.keyselect+span.select2-container .select2-selection--multiple {
     width: 100%;
 }
 
+/* --- Conditional Display Rules --- */
 .world_entry:has(input[name="delay_until_recursion"]:not(:checked)) .world_entry_form_control:has(input[name="delayUntilRecursionLevel"]) {
     display: none;
 }

@@ -1,8 +1,17 @@
+/* ==========================================================================
+   Tag System
+   - Tag pills, filters, folder navigation, and inline tag display
+   - Tag states: selected, excluded, actionable
+   - Folder-based tag navigation with breadcrumb drill-down
+   ========================================================================== */
+
+/* --- Tag Container Resets --- */
 #bulk_tags_div,
 #tags_div {
     min-width: 0;
 }
 
+/* --- Tag Controls Bar --- */
 .tag_controls {
     display: flex;
     flex-direction: row;
@@ -10,6 +19,7 @@
     align-items: center;
 }
 
+/* --- Tag View (Management List) --- */
 .tag_view_item {
     display: flex;
     flex-direction: row;
@@ -43,6 +53,7 @@
     color: var(--SmartThemeBodyColor) !important;
 }
 
+/* --- Base Tag Pill --- */
 .tag {
     border-radius: 5px;
     border-style: solid;
@@ -103,6 +114,7 @@
     cursor: pointer;
 }
 
+/* --- Tag List Layout --- */
 .tags {
     display: flex;
     flex-direction: row;
@@ -131,6 +143,7 @@
     opacity: 0.6;
 }
 
+/* --- Inline Tags (Character Cards) --- */
 .tags.tags_inline {
     opacity: 0.6;
     column-gap: 0.2rem;
@@ -154,6 +167,7 @@
     padding: 0 0.15rem;
 }
 
+/* --- Tag Filter Controls --- */
 .rm_tag_controls {
     display: flex;
     column-gap: 10px;
@@ -186,6 +200,7 @@
     aspect-ratio: 1 / 1;
 }
 
+/* --- Tag Selection States --- */
 .tag.selected {
     opacity: 1 !important;
     filter: none !important;
@@ -215,6 +230,7 @@
     opacity: 1;
 }
 
+/* --- Folder Tags --- */
 .tag_as_folder.right_menu_button {
     filter: brightness(75%) saturate(0.6);
     margin-right: 5px;
@@ -243,6 +259,7 @@
     opacity: 1;
 }
 
+/* --- Tag Indicator Badge --- */
 .tag.indicator::after {
     position: absolute;
     top: calc(var(--mainFontSize) * -0.5);
@@ -259,6 +276,7 @@
     opacity: 1;
 }
 
+/* --- Folder Drill-Down Breadcrumbs --- */
 .rm_tag_bogus_drilldown {
     height: calc(var(--mainFontSize)* 2 - 2);
 }
@@ -282,6 +300,7 @@
     opacity: 1;
 }
 
+/* --- Folder Back Button --- */
 .bogus_folder_select_back .avatar {
     display: none !important;
 }
