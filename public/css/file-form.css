@@ -1,3 +1,10 @@
+/* ==========================================================================
+   File Attachments & Audio Player
+   - File attachment display in send form and messages
+   - Audio player controls, progress bar, and time display
+   ========================================================================== */
+
+/* --- Attached File (Send Form) --- */
 .file_attached {
     display: flex;
     min-width: 150px;
@@ -12,6 +19,7 @@
     background-color: var(--white20a);
 }
 
+/* --- Message File Container --- */
 .mes_file_container {
     cursor: default;
     display: flex;
@@ -25,6 +33,7 @@
     border-radius: 15px;
 }
 
+/* --- Message File Wrapper --- */
 .mes .mes_file_wrapper:empty {
     display: none;
 }
@@ -40,6 +49,7 @@
     padding-right: 0;
 }
 
+/* --- File Name & Size --- */
 .mes_file_container .mes_file_size,
 .file_attached .file_size {
     font-size: 0.9em;
@@ -54,6 +64,7 @@
     white-space: nowrap;
 }
 
+/* --- File Form --- */
 #file_form {
     display: flex;
     width: 100%;
