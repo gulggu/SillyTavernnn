@@ -1,6 +1,14 @@
+/* ==========================================================================
+   TTS (Text-to-Speech) Extension
+   - Voice preview list and playback controls
+   - TTS button styling and voice block layout
+   - AllTalk/Novel TTS-specific settings rows
+   ========================================================================== */
+
 @import './css/minimax-tts.css';
 @import './css/openai-tts.css';
 
+/* --- Voice Preview List --- */
 .voice_preview {
     margin: 0.25rem 0.5rem;
     display: flex;
@@ -23,6 +31,7 @@
     cursor: pointer;
 }
 
+/* --- TTS Action Button --- */
 .tts-button {
     margin: 0;
     outline: none;
@@ -39,6 +48,7 @@
     opacity: 1;
 }
 
+/* --- TTS Settings Block --- */
 .tts_block {
     display: flex;
     align-items: baseline;
@@ -60,6 +70,7 @@
     margin-bottom: 5px;
 }
 
+/* --- AllTalk Settings --- */
 .at-settings-row {
     display: flex;
     justify-content: space-between;
@@ -125,6 +136,7 @@
     width: 38%;
 }
 
+/* --- AllTalk Status --- */
 #at-status_info {
     color: lightgreen;
 }
