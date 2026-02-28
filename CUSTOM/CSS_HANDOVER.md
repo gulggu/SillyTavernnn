@@ -17,6 +17,7 @@
 7. [CSS 커스터마이징 가이드](#7-css-커스터마이징-가이드)
 8. [자주 사용되는 커스터마이징 패턴](#8-자주-사용되는-커스터마이징-패턴)
 9. [주의사항 및 알려진 이슈](#9-주의사항-및-알려진-이슈)
+10. [20대 여성 감성 테마 — `CUSTOM/feminine-design.css`](#10-20대-여성-감성-테마--customfeminine-designcss)
 
 ---
 
@@ -528,6 +529,59 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 > **인수인계 요약**: 이 문서와 각 CSS 파일의 섹션 주석을 참고하여 커스터마이징을 진행하세요. 테마 변경은 CSS 변수 오버라이드로, UI 레이아웃 변경은 해당 파일의 섹션을 찾아 수정하면 됩니다. `user.css`를 최우선으로 활용하는 것을 권장합니다.
 
 
+---
+
+## 10. 20대 여성 감성 테마 — `CUSTOM/feminine-design.css`
+
+> **파일**: `CUSTOM/feminine-design.css`
+> **디자인 콘셉트**: Soft Cream × Dusty Rose × Elegant Simplicity
+
+### 설계 원칙 (우선순위 순)
+
+| 우선순위 | 원칙 |
+|----------|------|
+| 1 | 가독성 — 이북리더기 수준의 텍스트 읽힘 |
+| 2 | 웹페이지 디자인 — 여백의 미, 깔끔한 레이아웃 |
+| 3 | 게임 감성 — 모바일 가차 dialogue 같은 채팅창 |
+
+### 컬러 팔레트
+
+| 변수 | 값 | 용도 |
+|------|----|------|
+| `--fem-rose` | `#C9848F` | 주 강조색 (dusty rose) |
+| `--fem-sage` | `#9BAF9A` | 보조 강조색 (sage green) |
+| `--fem-warm-dark` | `rgba(28,18,21,0.96)` | 배경 기반 색 |
+| `--fem-card-bg` | `rgba(42,30,34,0.55)` | 카드/패널 배경 |
+| `--fem-text` | `rgba(242,230,225,0.95)` | 본문 텍스트 (크림 화이트) |
+| `--fem-text-muted` | `rgba(195,175,168,0.68)` | 보조 텍스트 |
+
+### 주요 구현 사항
+
+- **Pretendard 폰트**: CDN via jsDelivr 자동 임포트
+- **채팅창 줄간격**: `1.9rem` (이북리더기 수준)
+- **UI 창 줄간격**: `1.4rem`
+- **메시지 방향**: `.mes { flex-direction: column }` 적용
+- **메시지 버튼 애니메이션**: 호버 시 `translateY(-20px → 0)` + `opacity 0→1`
+- **상단바**: 완전 투명 배경, 패널 최대 높이 `80dvh`, 아이콘 소형화(`0.78em`)
+- **QR 팝업**: `backdrop-filter blur(26px)`, `max-height: 68dvh`, 스크롤 가능, 슬라이드 호버 효과
+- **스크롤바**: `scrollbar-width: none` + `::-webkit-scrollbar { display: none }` 전역 적용
+- **텍스트 정렬**: `text-align: justify; text-justify: inter-character` (균등분할 X)
+- **UI 헤더 그라데이션 제거**: `h1~h6, .title_restorable` 등 배경 초기화
+- **SillyTavern CSS 변수 오버라이드**: `--SmartTheme*` 변수로 테마 통합
+
+### 적용 방법
+
+`default/public/css/user.css` 파일에 아래 내용을 붙여넣습니다:
+
+```css
+/* 20대 여성 감성 테마 적용 */
+/* (아래 CUSTOM/feminine-design.css 의 전체 내용을 여기에 붙여넣기) */
+```
+
+또는 SillyTavern 설정 > 사용자 CSS 입력창에 `CUSTOM/feminine-design.css` 내용을 붙여넣으세요.
+
+---
+
 ----
 
 # 공통적인 요소
@@ -549,7 +603,7 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 * column, margin, padding 등의 적당한 분배로 ui 디자인을 가독성 좋게 작업합니다. 여백의 미를 중요시하세요
 * 웹사이트 디자인의 방식 및 요령을 적절히 사용하세요.
 * 아주 다양한 요소에 디자인이 가미되어야합니다.
-* 채팅창 디자인은 모바일 가챠게임의 채팅 dialogue같은, 그러나 심플한 느낌으로 가독성 좋게 작업합니다.
+* 채팅창 디자인은 모바일 가차게임의 채팅 dialogue같은, 그러나 심플한 느낌으로 가독성 좋게 작업합니다.
 * 너무 심한 디자인은 금지합니다.
 * 너무 흰색은 눈이 아프니 약간 크림색으로 작업합니다.
 * 전반적으로 가장 중요한 것: 1순위-가독성, 2순위-웹페이지 디자인, 3순위- 약간의 게임같은 디자인
