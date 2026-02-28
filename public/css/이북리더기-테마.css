@@ -1,0 +1,885 @@
+/* =============================================================================
+   이북리더기 테마 (E-Book Reader Theme)
+   SillyTavern 사용자 지정 CSS 테마
+   버전: 1.0.0
+   ─────────────────────────────────────────────────────────────────────────────
+   적용 방법 (How to Apply):
+     SillyTavern → User Settings → Custom CSS 텍스트 박스에
+     이 파일의 전체 내용을 붙여넣기 하세요.
+
+     권장 설정:
+       • Chat Style : Document  (채팅 스타일을 '문서' 모드로 설정)
+       • Blur Strength : 0      (배경 블러 없음)
+       • Text Shadows : 꺼짐
+   ─────────────────────────────────────────────────────────────────────────────
+   디자인 컨셉:
+     종이 책·전자책 리더(Kindle / Kobo)처럼 따뜻한 크림색 배경 위에
+     깔끔한 세리프 서체로 텍스트가 흐르는 몰입형 독서 경험을 제공합니다.
+     불필요한 그림자, 블러, 형광색 강조를 모두 제거하여
+     콘텐츠 자체에 완전히 집중할 수 있도록 설계되었습니다.
+   ============================================================================= */
+
+
+/* ─────────────────────────────────────────────
+   1. CSS 변수 오버라이드 (Color & Typography)
+   ───────────────────────────────────────────── */
+
+:root {
+    /* 텍스트 색상 — 따뜻한 다크 브라운 (형광 흰색 대신) */
+    --SmartThemeBodyColor:    #2d2418;
+    --SmartThemeEmColor:      #7a6853;
+    --SmartThemeUnderlineColor: #9b7d45;
+    --SmartThemeQuoteColor:   #8c5a2b;
+
+    /* 배경 틴트 — 크림/아이보리 종이색 */
+    --SmartThemeBlurTintColor:     rgba(244, 238, 224, 1);
+    --SmartThemeChatTintColor:     rgba(248, 243, 230, 1);
+
+    /* 메시지 배경 */
+    --SmartThemeUserMesBlurTintColor: rgba(218, 206, 185, 0.35);
+    --SmartThemeBotMesBlurTintColor:  rgba(248, 243, 230, 0.0);
+
+    /* 그림자·테두리 — 매우 은은하게 */
+    --SmartThemeShadowColor:  rgba(60, 45, 20, 0.08);
+    --SmartThemeBorderColor:  rgba(160, 130, 90, 0.28);
+
+    /* 체크박스 계산용 (텍스트 색상에 맞게) */
+    --SmartThemeCheckboxBgColorR: 45;
+    --SmartThemeCheckboxBgColorG: 36;
+    --SmartThemeCheckboxBgColorB: 24;
+
+    /* 폰트: 책처럼 세리프 계열 우선 */
+    --mainFontFamily: "Georgia", "Noto Serif KR", "Noto Serif", "Noto Sans", serif;
+    --mainFontSize:   16px;
+
+    /* 채팅 영역 너비 — 읽기 편한 황금비 너비 */
+    --sheldWidth: 54vw;
+
+    /* 블러·그림자 제거 */
+    --blurStrength: 0;
+    --shadowWidth:  0;
+
+    /* 애니메이션 — 부드럽게 */
+    --animation-duration: 180ms;
+}
+
+
+/* ─────────────────────────────────────────────
+   2. 전역 리셋 — 텍스트 그림자 완전 제거
+   ───────────────────────────────────────────── */
+
+* {
+    text-shadow: none !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   3. 배경 — 크림 종이 질감
+   ───────────────────────────────────────────── */
+
+body {
+    background-color: #f4efe4;
+    color-scheme: only light;
+}
+
+/* 배경 이미지가 설정된 경우 어둡게 하는 오버레이 제거 */
+#bg1 {
+    filter: none !important;
+    opacity: 0.08 !important; /* 배경 이미지 사용 시 은은하게 */
+}
+
+
+/* ─────────────────────────────────────────────
+   4. 스크롤바 — 책 페이지 느낌
+   ───────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(160, 130, 90, 0.08);
+}
+
+::-webkit-scrollbar-thumb:vertical {
+    background-color: rgba(160, 130, 90, 0.4);
+    border-radius: 3px;
+    border: none;
+    box-shadow: none;
+}
+
+::-webkit-scrollbar-thumb:vertical:hover {
+    background-color: rgba(140, 110, 60, 0.6);
+}
+
+
+/* ─────────────────────────────────────────────
+   5. 상단 바 (Top Bar)
+   ───────────────────────────────────────────── */
+
+#top-bar {
+    background-color: #ede7d8 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    box-shadow: 0 1px 0 rgba(160, 130, 90, 0.25),
+                0 2px 8px rgba(60, 45, 20, 0.06) !important;
+    border-bottom: 1px solid rgba(160, 130, 90, 0.22);
+}
+
+/* 상단 바 아이콘 색상 */
+#top-bar .menu_button,
+#top-bar .fa-solid,
+#top-bar .fa-regular,
+#top-bar i {
+    color: #5a4530 !important;
+    text-shadow: none !important;
+}
+
+#top-bar .menu_button:hover {
+    color: #2d2418 !important;
+    background-color: rgba(160, 130, 90, 0.18) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   6. 채팅 영역 (#chat)
+   ───────────────────────────────────────────── */
+
+#chat {
+    background-color: #f8f3e6 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    text-shadow: none !important;
+    padding: 0 20px;
+}
+
+
+/* ─────────────────────────────────────────────
+   7. 메시지 스타일
+   ───────────────────────────────────────────── */
+
+/* 공통 메시지 컨테이너 */
+.mes {
+    border: none !important;
+    border-bottom: 1px solid rgba(160, 130, 90, 0.15) !important;
+    border-radius: 0 !important;
+    padding: 16px 12px 14px 12px !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    transition: background-color var(--animation-duration) ease;
+}
+
+.mes:last-child {
+    border-bottom: none !important;
+}
+
+.mes:hover {
+    background-color: rgba(160, 130, 90, 0.05) !important;
+}
+
+/* 봇(AI) 메시지 배경 — 순수한 크림 */
+.mes:not([is_user="true"]) {
+    background-color: transparent !important;
+}
+
+/* 사용자 메시지 배경 — 살짝 따뜻한 톤 */
+.mes[is_user="true"] {
+    background-color: rgba(218, 206, 185, 0.22) !important;
+}
+
+/* 메시지 텍스트 블록 */
+.mes_text {
+    color: #2d2418 !important;
+    font-family: "Georgia", "Noto Serif KR", "Noto Serif", "Noto Sans", serif !important;
+    font-size: 16px !important;
+    line-height: 1.82 !important;
+    letter-spacing: 0.012em !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word;
+}
+
+/* 단락 사이 여백 */
+.mes_text p {
+    margin: 0 0 0.85em 0;
+}
+
+.mes_text p:last-child {
+    margin-bottom: 0;
+}
+
+/* 기울임 (Em) — 내레이션·액션 */
+.mes_text em,
+.mes_text i {
+    color: #7a6853 !important;
+    font-style: italic;
+}
+
+/* 강조 (Strong/Bold) */
+.mes_text strong,
+.mes_text b {
+    color: #2d2418 !important;
+    font-weight: 700;
+}
+
+/* 인용 (Quote) — 대화문 강조 */
+.mes_text q,
+.mes_text blockquote {
+    color: #8c5a2b !important;
+    font-style: normal;
+}
+
+/* 밑줄 */
+.mes_text u {
+    color: #9b7d45 !important;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* 취소선 */
+.mes_text s,
+.mes_text del {
+    color: #a89b87 !important;
+    text-decoration: line-through;
+}
+
+/* 코드 인라인 */
+.mes_text code {
+    font-family: "Noto Sans Mono", "Courier New", monospace !important;
+    background-color: rgba(160, 130, 90, 0.12) !important;
+    color: #5a3e28 !important;
+    padding: 1px 5px !important;
+    border-radius: 3px !important;
+    font-size: 0.9em !important;
+    border: 1px solid rgba(160, 130, 90, 0.22) !important;
+}
+
+/* 코드 블록 */
+.mes_text pre {
+    background-color: #ece6d8 !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    border-radius: 6px !important;
+    padding: 14px 16px !important;
+    overflow-x: auto;
+}
+
+.mes_text pre code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: #3a2810 !important;
+    font-size: 0.88em !important;
+    line-height: 1.6 !important;
+}
+
+/* 수평선 */
+.mes_text hr {
+    border: none !important;
+    border-top: 1px solid rgba(160, 130, 90, 0.3) !important;
+    margin: 1.2em 0 !important;
+}
+
+/* 목록 */
+.mes_text ul,
+.mes_text ol {
+    padding-left: 1.5em;
+    margin: 0.5em 0 0.85em 0;
+}
+
+.mes_text li {
+    margin-bottom: 0.3em;
+}
+
+/* 제목 */
+.mes_text h1, .mes_text h2, .mes_text h3,
+.mes_text h4, .mes_text h5, .mes_text h6 {
+    color: #2d2418 !important;
+    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    font-weight: 700;
+    margin: 1.2em 0 0.5em 0;
+    line-height: 1.4;
+}
+
+.mes_text h1 { font-size: 1.6em; border-bottom: 1px solid rgba(160,130,90,0.25); padding-bottom: 0.25em; }
+.mes_text h2 { font-size: 1.35em; }
+.mes_text h3 { font-size: 1.15em; }
+
+
+/* ─────────────────────────────────────────────
+   8. 캐릭터 이름 & 메시지 헤더
+   ───────────────────────────────────────────── */
+
+.ch_name {
+    margin-bottom: 4px !important;
+}
+
+.ch_name .name_text {
+    color: #5a4530 !important;
+    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    font-size: 0.82em !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.05em !important;
+    text-transform: uppercase;
+    text-shadow: none !important;
+    opacity: 0.75;
+}
+
+/* 사용자 이름 */
+.mes[is_user="true"] .ch_name .name_text {
+    color: #7a5a35 !important;
+}
+
+/* 타임스탬프 */
+.timestamp {
+    color: #b3a08a !important;
+    font-size: 0.72em !important;
+    font-family: "Noto Sans", sans-serif !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   9. 아바타 — 책 느낌으로 미니멀하게
+   ───────────────────────────────────────────── */
+
+.mesAvatarWrapper .avatar {
+    border-radius: 4px !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    box-shadow: none !important;
+    opacity: 0.88;
+}
+
+.mesAvatarWrapper .avatar img {
+    border-radius: 3px !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   10. 입력 폼 (Send Form)
+   ───────────────────────────────────────────── */
+
+#send_form {
+    background-color: #ede7d8 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    border-top: 1px solid rgba(160, 130, 90, 0.25) !important;
+    border-radius: 0 !important;
+    box-shadow: 0 -2px 8px rgba(60, 45, 20, 0.05) !important;
+}
+
+/* 텍스트 입력창 */
+#send_textarea {
+    background-color: #faf6ed !important;
+    color: #2d2418 !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    border-radius: 6px !important;
+    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    font-size: 15px !important;
+    line-height: 1.65 !important;
+    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.06) !important;
+    caret-color: #8c5a2b;
+}
+
+#send_textarea:focus {
+    border-color: rgba(140, 90, 43, 0.5) !important;
+    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.06),
+                0 0 0 2px rgba(140, 90, 43, 0.12) !important;
+    outline: none !important;
+}
+
+#send_textarea::placeholder {
+    color: #b3a08a !important;
+}
+
+/* 전송 버튼 */
+#send_but {
+    color: #5a4530 !important;
+    background-color: transparent !important;
+}
+
+#send_but:hover {
+    color: #2d2418 !important;
+    background-color: rgba(160, 130, 90, 0.15) !important;
+    border-radius: 6px;
+}
+
+/* 하단 폼 아이콘 버튼 */
+#send_form .menu_button,
+#send_form .fa-solid,
+#send_form .fa-regular,
+#send_form i {
+    color: #7a6853 !important;
+    text-shadow: none !important;
+}
+
+#send_form .menu_button:hover {
+    color: #2d2418 !important;
+    background-color: rgba(160, 130, 90, 0.15) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   11. 메시지 버튼 (Edit, Copy 등)
+   ───────────────────────────────────────────── */
+
+.mes_buttons .mes_button {
+    color: #b3a08a !important;
+    text-shadow: none !important;
+    background: transparent !important;
+    transition: color var(--animation-duration) ease,
+                background-color var(--animation-duration) ease;
+}
+
+.mes_buttons .mes_button:hover {
+    color: #5a4530 !important;
+    background-color: rgba(160, 130, 90, 0.15) !important;
+    border-radius: 4px;
+}
+
+
+/* ─────────────────────────────────────────────
+   12. 사이드 패널 (Left / Right Nav)
+   ───────────────────────────────────────────── */
+
+#left-nav-panel,
+#right-nav-panel {
+    background-color: #ede7d8 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-color: rgba(160, 130, 90, 0.25) !important;
+    box-shadow: 2px 0 12px rgba(60, 45, 20, 0.08) !important;
+    color: #2d2418 !important;
+}
+
+/* 패널 내 텍스트 */
+#left-nav-panel *,
+#right-nav-panel * {
+    color: #2d2418;
+}
+
+/* 서랍(drawer) 컨텐츠 */
+.drawer-content {
+    background-color: #f0ead9 !important;
+    backdrop-filter: none !important;
+    border-color: rgba(160, 130, 90, 0.2) !important;
+}
+
+/* 패널 탭 버튼 */
+.right_menu_button,
+.left_menu_button {
+    color: #5a4530 !important;
+    text-shadow: none !important;
+}
+
+.right_menu_button:hover,
+.left_menu_button:hover,
+.right_menu_button.selected,
+.left_menu_button.selected {
+    color: #2d2418 !important;
+    background-color: rgba(160, 130, 90, 0.2) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   13. 팝업 & 다이얼로그
+   ───────────────────────────────────────────── */
+
+.popup {
+    background-color: #f4efe4 !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    box-shadow: 0 8px 32px rgba(60, 45, 20, 0.18) !important;
+    color: #2d2418 !important;
+    border-radius: 8px !important;
+}
+
+.popup * {
+    color: #2d2418;
+}
+
+.popup-title {
+    color: #2d2418 !important;
+    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    border-bottom: 1px solid rgba(160, 130, 90, 0.25) !important;
+}
+
+/* 팝업 버튼 */
+.popup .menu_button {
+    background-color: rgba(160, 130, 90, 0.15) !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    color: #2d2418 !important;
+    border-radius: 5px !important;
+}
+
+.popup .menu_button:hover {
+    background-color: rgba(140, 90, 43, 0.2) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   14. 입력 필드 & 슬라이더 (설정 패널)
+   ───────────────────────────────────────────── */
+
+input[type="text"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="search"],
+select,
+textarea {
+    background-color: #faf6ed !important;
+    color: #2d2418 !important;
+    border-color: rgba(160, 130, 90, 0.35) !important;
+    border-radius: 5px !important;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color: rgba(140, 90, 43, 0.5) !important;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(140, 90, 43, 0.12) !important;
+}
+
+/* 범위 슬라이더 */
+input[type="range"] {
+    accent-color: #8c5a2b;
+}
+
+/* 체크박스·라디오 */
+input[type="checkbox"],
+input[type="radio"] {
+    accent-color: #8c5a2b;
+}
+
+/* 일반 버튼 */
+.menu_button {
+    color: #5a4530 !important;
+    text-shadow: none !important;
+}
+
+.menu_button:hover {
+    background-color: rgba(160, 130, 90, 0.18) !important;
+    color: #2d2418 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   15. 드롭다운 & Select2
+   ───────────────────────────────────────────── */
+
+.select2-container--default .select2-selection--single,
+.select2-container--default .select2-selection--multiple {
+    background-color: #faf6ed !important;
+    border-color: rgba(160, 130, 90, 0.35) !important;
+    color: #2d2418 !important;
+}
+
+.select2-container--default .select2-results__option {
+    color: #2d2418 !important;
+    background-color: #f4efe4 !important;
+}
+
+.select2-container--default .select2-results__option--highlighted {
+    background-color: rgba(140, 90, 43, 0.18) !important;
+    color: #2d2418 !important;
+}
+
+.select2-dropdown {
+    background-color: #f4efe4 !important;
+    border-color: rgba(160, 130, 90, 0.3) !important;
+    box-shadow: 0 4px 16px rgba(60, 45, 20, 0.12) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   16. 캐릭터 목록 패널
+   ───────────────────────────────────────────── */
+
+#rm_print_characters_block {
+    background-color: transparent !important;
+}
+
+.character_select {
+    background-color: rgba(160, 130, 90, 0.08) !important;
+    border: 1px solid rgba(160, 130, 90, 0.18) !important;
+    border-radius: 6px !important;
+    color: #2d2418 !important;
+    transition: all var(--animation-duration) ease;
+}
+
+.character_select:hover,
+.character_select.selected_recently {
+    background-color: rgba(160, 130, 90, 0.18) !important;
+    border-color: rgba(140, 90, 43, 0.35) !important;
+}
+
+/* 캐릭터 이름 */
+.ch_name_menu {
+    color: #2d2418 !important;
+    text-shadow: none !important;
+}
+
+/* 최근 채팅 설명 */
+.ch_description {
+    color: #7a6853 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   17. 토스트 알림 (Toastr)
+   ───────────────────────────────────────────── */
+
+#toast-container .toast {
+    background-color: #ede7d8 !important;
+    color: #2d2418 !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    box-shadow: 0 4px 12px rgba(60, 45, 20, 0.12) !important;
+    border-radius: 6px !important;
+    opacity: 0.97 !important;
+}
+
+#toast-container .toast-info    { border-left: 4px solid #8c9a6a !important; }
+#toast-container .toast-success { border-left: 4px solid #6a8c5a !important; }
+#toast-container .toast-warning { border-left: 4px solid #c49a3a !important; }
+#toast-container .toast-error   { border-left: 4px solid #a05030 !important; }
+
+#toast-container .toast-title {
+    color: #2d2418 !important;
+    font-weight: 700;
+}
+
+#toast-container .toast-message {
+    color: #5a4530 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   18. 코드 블록 하이라이팅 오버라이드 (밝은 테마)
+   ───────────────────────────────────────────── */
+
+.hljs {
+    background: #ece6d8 !important;
+    color: #3a2810 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   19. 스와이프 버튼
+   ───────────────────────────────────────────── */
+
+.swipe_left,
+.swipe_right {
+    color: #b3a08a !important;
+    text-shadow: none !important;
+    opacity: 0.7;
+}
+
+.swipe_left:hover,
+.swipe_right:hover {
+    color: #5a4530 !important;
+    opacity: 1;
+}
+
+.swipe_counter {
+    color: #9b8870 !important;
+    font-size: 0.78em;
+}
+
+
+/* ─────────────────────────────────────────────
+   20. 시스템 메시지
+   ───────────────────────────────────────────── */
+
+.mes[is_system="true"] {
+    border-bottom: none !important;
+    padding: 6px 12px !important;
+}
+
+.mes[is_system="true"] .mes_text {
+    color: #9b8870 !important;
+    font-size: 0.82em !important;
+    font-style: italic;
+    text-align: center;
+    line-height: 1.5 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   21. 추론 블록 (Reasoning/Think)
+   ───────────────────────────────────────────── */
+
+.mes_reasoning {
+    color: #9b8870 !important;
+    background-color: rgba(160, 130, 90, 0.07) !important;
+    border-left: 2px solid rgba(160, 130, 90, 0.3) !important;
+    border-radius: 0 4px 4px 0 !important;
+    padding: 8px 12px !important;
+    font-size: 0.88em !important;
+    font-style: italic;
+}
+
+.mes_reasoning_summary {
+    color: #9b8870 !important;
+    font-size: 0.82em !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   22. 태그 시스템
+   ───────────────────────────────────────────── */
+
+.tag {
+    background-color: rgba(160, 130, 90, 0.15) !important;
+    border: 1px solid rgba(160, 130, 90, 0.3) !important;
+    color: #5a4530 !important;
+    border-radius: 12px !important;
+    font-size: 0.78em !important;
+}
+
+.tag:hover {
+    background-color: rgba(140, 90, 43, 0.22) !important;
+}
+
+.tag.selected {
+    background-color: rgba(140, 90, 43, 0.3) !important;
+    border-color: rgba(140, 90, 43, 0.5) !important;
+    color: #2d2418 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   23. 퀵 리플라이 (Quick Reply) 바
+   ───────────────────────────────────────────── */
+
+#qr--bar {
+    background-color: #ede7d8 !important;
+    border-top: 1px solid rgba(160, 130, 90, 0.2) !important;
+}
+
+.qr--button {
+    background-color: rgba(160, 130, 90, 0.12) !important;
+    border: 1px solid rgba(160, 130, 90, 0.28) !important;
+    color: #5a4530 !important;
+    border-radius: 5px !important;
+    transition: all var(--animation-duration) ease;
+}
+
+.qr--button:hover {
+    background-color: rgba(140, 90, 43, 0.22) !important;
+    color: #2d2418 !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   24. 인라인 드로어 토글 (설정 섹션)
+   ───────────────────────────────────────────── */
+
+.inline-drawer-toggle {
+    background-color: rgba(160, 130, 90, 0.1) !important;
+    border: 1px solid rgba(160, 130, 90, 0.2) !important;
+    border-radius: 6px !important;
+    color: #5a4530 !important;
+}
+
+.inline-drawer-toggle:hover {
+    background-color: rgba(160, 130, 90, 0.2) !important;
+}
+
+.inline-drawer-content {
+    background-color: rgba(160, 130, 90, 0.05) !important;
+    border: 1px solid rgba(160, 130, 90, 0.15) !important;
+    border-top: none !important;
+    border-radius: 0 0 6px 6px !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   25. 환영 패널 (Welcome Panel)
+   ───────────────────────────────────────────── */
+
+#welcome_panel {
+    background-color: transparent !important;
+}
+
+.recent_con {
+    background-color: rgba(160, 130, 90, 0.08) !important;
+    border: 1px solid rgba(160, 130, 90, 0.2) !important;
+    border-radius: 8px !important;
+    color: #2d2418 !important;
+}
+
+.recent_con:hover {
+    background-color: rgba(160, 130, 90, 0.16) !important;
+    border-color: rgba(140, 90, 43, 0.35) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   26. 반응형 — 모바일에서도 읽기 편하게
+   ───────────────────────────────────────────── */
+
+@media screen and (max-width: 1000px) {
+    :root {
+        --sheldWidth: 100vw;
+        --mainFontSize: 15px;
+    }
+
+    .mes_text {
+        font-size: 15px !important;
+        line-height: 1.78 !important;
+    }
+
+    #chat {
+        padding: 0 8px !important;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    :root {
+        --mainFontSize: 14px;
+    }
+
+    .mes_text {
+        font-size: 14px !important;
+        line-height: 1.75 !important;
+        letter-spacing: 0 !important;
+    }
+}
+
+
+/* ─────────────────────────────────────────────
+   27. 세부 다듬기 — 일관된 책 느낌
+   ───────────────────────────────────────────── */
+
+/* 포커스 링 색상 통일 */
+:focus-visible {
+    outline-color: rgba(140, 90, 43, 0.5) !important;
+}
+
+/* 선택 영역 (텍스트 드래그) */
+::selection {
+    background-color: rgba(140, 90, 43, 0.22) !important;
+    color: #2d2418 !important;
+}
+
+/* 구분선 */
+hr {
+    border-color: rgba(160, 130, 90, 0.25) !important;
+    border-style: solid !important;
+}
+
+/* 링크 */
+a {
+    color: #8c5a2b !important;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+
+a:hover {
+    color: #5a3a18 !important;
+}
+
+/* 로더 스피너 */
+#loadingAnimation {
+    background-color: rgba(244, 239, 228, 0.9) !important;
+}
