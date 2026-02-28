@@ -2,7 +2,7 @@
 
 > **SillyTavern CSS 커스터마이징 요청 및 인수인계를 위한 가이드 문서**
 >
-> 최종 업데이트: 2026-02-27
+> 최종 업데이트: 2026-02-28
 
 ---
 
@@ -17,7 +17,7 @@
 7. [CSS 커스터마이징 가이드](#7-css-커스터마이징-가이드)
 8. [자주 사용되는 커스터마이징 패턴](#8-자주-사용되는-커스터마이징-패턴)
 9. [주의사항 및 알려진 이슈](#9-주의사항-및-알려진-이슈)
-10. [20대 여성 감성 테마 — `CUSTOM/feminine-design.css`](#10-20대-여성-감성-테마--customfeminine-designcss)
+10. [컴팩트 & 심플 & 가독성 우선 테마 — `CUSTOM/compact-simple.css`](#10-컴팩트--심플--가독성-우선-테마--customcompact-simplecss)
 
 ---
 
@@ -531,29 +531,30 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 
 ---
 
-## 10. 20대 여성 감성 테마 — `CUSTOM/feminine-design.css`
+## 10. 컴팩트 & 심플 & 가독성 우선 테마 — `CUSTOM/compact-simple.css`
 
-> **파일**: `CUSTOM/feminine-design.css`
-> **디자인 콘셉트**: Soft Cream × Dusty Rose × Elegant Simplicity
+> **파일**: `CUSTOM/compact-simple.css`
+> **디자인 콘셉트**: 웜 크림 라이트 테마 — 컴팩트, 심플, 가독성 최우선, 쨍한 컬러 ㄴㄴ
 
 ### 설계 원칙 (우선순위 순)
 
 | 우선순위 | 원칙 |
 |----------|------|
 | 1 | 가독성 — 이북리더기 수준의 텍스트 읽힘 |
-| 2 | 웹페이지 디자인 — 여백의 미, 깔끔한 레이아웃 |
-| 3 | 게임 감성 — 모바일 가차 dialogue 같은 채팅창 |
+| 2 | 웹페이지 디자인 — 여백의 미, 깔끔·컴팩트한 레이아웃 |
+| 3 | 게임 감성 — 모바일 dialogue 풍의 채팅창 (아주 살짝) |
 
-### 컬러 팔레트
+### 컬러 팔레트 — 채도를 낮춰 눈 피로 최소화
 
 | 변수 | 값 | 용도 |
 |------|----|------|
-| `--fem-rose` | `#C9848F` | 주 강조색 (dusty rose) |
-| `--fem-sage` | `#9BAF9A` | 보조 강조색 (sage green) |
-| `--fem-warm-dark` | `rgba(28,18,21,0.96)` | 배경 기반 색 |
-| `--fem-card-bg` | `rgba(42,30,34,0.55)` | 카드/패널 배경 |
-| `--fem-text` | `rgba(242,230,225,0.95)` | 본문 텍스트 (크림 화이트) |
-| `--fem-text-muted` | `rgba(195,175,168,0.68)` | 보조 텍스트 |
+| `--cs-bg` | `#F5F1EB` | 메인 배경 — 웜 크림 (너무 흰색 ㄴㄴ) |
+| `--cs-panel` | `rgba(255,252,248,0.92)` | 패널/카드 배경 |
+| `--cs-text` | `#2A2420` | 본문 텍스트 — 웜 차콜 |
+| `--cs-text-muted` | `#6A6058` | 보조 텍스트 |
+| `--cs-accent` | `#8A7A70` | 주 강조 — 뮤트 타프 (쨍하지 않음) |
+| `--cs-accent-alt` | `#7A9070` | 보조 강조 — 뮤트 세이지 (쨍하지 않음) |
+| `--cs-border` | `rgba(160,148,138,0.22)` | 테두리 — 은은하게 |
 
 ### 주요 구현 사항
 
@@ -561,11 +562,12 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 - **채팅창 줄간격**: `1.9rem` (이북리더기 수준)
 - **UI 창 줄간격**: `1.4rem`
 - **메시지 방향**: `.mes { flex-direction: column }` 적용
-- **메시지 버튼 애니메이션**: 호버 시 `translateY(-20px → 0)` + `opacity 0→1`
-- **상단바**: 완전 투명 배경, 패널 최대 높이 `80dvh`, 아이콘 소형화(`0.78em`)
-- **QR 팝업**: `backdrop-filter blur(26px)`, `max-height: 68dvh`, 스크롤 가능, 슬라이드 호버 효과
+- **메시지 버튼 애니메이션**: 호버 시 `translateY(-16px → 0)` + `opacity 0→1`
+- **상단바**: 완전 투명 배경, 패널 최대 높이 `80dvh`, 아이콘 소형화
+- **QR 팝업**: `backdrop-filter blur(20px)`, `max-height: 68dvh`, 스크롤 가능
 - **스크롤바**: `scrollbar-width: none` + `::-webkit-scrollbar { display: none }` 전역 적용
-- **텍스트 정렬**: `text-align: justify; text-justify: inter-character` (균등분할 X)
+- **텍스트 정렬**: `text-align: justify; text-justify: inter-word` (균등분할 X, `word-break: keep-all`)
+- **그림자 일체 금지**: `text-shadow: none`, `box-shadow: none` 전역 적용
 - **UI 헤더 그라데이션 제거**: `h1~h6, .title_restorable` 등 배경 초기화
 - **SillyTavern CSS 변수 오버라이드**: `--SmartTheme*` 변수로 테마 통합
 
@@ -574,11 +576,11 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 `default/public/css/user.css` 파일에 아래 내용을 붙여넣습니다:
 
 ```css
-/* 20대 여성 감성 테마 적용 */
-/* (아래 CUSTOM/feminine-design.css 의 전체 내용을 여기에 붙여넣기) */
+/* 컴팩트 & 심플 & 가독성 우선 테마 적용 */
+/* (아래 CUSTOM/compact-simple.css 의 전체 내용을 여기에 붙여넣기) */
 ```
 
-또는 SillyTavern 설정 > 사용자 CSS 입력창에 `CUSTOM/feminine-design.css` 내용을 붙여넣으세요.
+또는 SillyTavern 설정 > 사용자 CSS 입력창에 `CUSTOM/compact-simple.css` 내용을 붙여넣으세요.
 
 ---
 
@@ -588,6 +590,7 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 ### 모든 사용자 작성 css는 해당 폴더 안에 새로운 파일로 만들어야 합니다.
 ### 하단의 항목들을 지켜야 합니다.
 ### 기본적으로 이북리더기처럼 글이 잘 읽히는게 먼저입니다.
+### **컴팩트 & 심플 & 가독성 우선 — 너무 쨍한 컬러 ㄴㄴ** (채도를 낮춰 눈 피로 최소화)
 
 * 말풍선/플랫버블/문서 각각 호환되도록 css구조 정밀하게
 * 말풍선- 간격 empty하게 해서 채팅 여러개 보내는 것처럼 / 플랫버블- 게임 대사 dialogue 처럼 (char user 다  채팅 가로 flex하게) / 문서: 이북리더기 튼것처럼
@@ -596,7 +599,7 @@ body.rounded-avatars .avatar { border-radius: 50% !important; }
 * 상단바의 최대 패널높이 전체 높이의 80%여야 합니다. 상단바는 배경색이 투명해야합니다.
 * QR 버튼을 누를 때 나오는 내부 아이템은 예쁜 팝업 형태로 나와야 하며 스크롤도 가능해야합니다.
 * 모든 요소에 디자인적 요소가 들어가야 합니다.
-* 모든 요소는 컴팩트하고, 심플하고, 깔끔하면서도 디자인적 요소가 들어가야 합니다. 제1순위는 글이 가독성 좋게 읽히느냐입니다.
+* 모든 요소는 컴팩트하고, 심플하고, 깔끔하면서도 디자인적 요소가 들어가야 합니다. 제1순위는 글이 가독성 좋게 읽히느냐입니다. **쨍한 컬러 ㄴㄴ — 채도를 낮춰 눈이 편하게.**
 * .mes {flex-direction: column;} 사용하세요.
 * .mes_buttons {opacity: 0 !important; transform: translateY(-20px) !important;transition: opacity .3s cubic-bezier(.25,.1,.25,1), transform .3s cubic-bezier(.25,.1,.25,1);} .mes:hover .mes_buttons {opacity: 1 !important;transform: translateY(0) !important;} 사용하세요.
 * 상단, 하단의 아이콘은 작아야 합니다.

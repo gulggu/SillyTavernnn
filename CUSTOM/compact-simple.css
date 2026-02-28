@@ -1,0 +1,435 @@
+/*
+ * CUSTOM/compact-simple.css
+ * SillyTavern 라이트 테마 — 컴팩트 & 심플 & 가독성 우선
+ *
+ * 설계 원칙:
+ *   1순위 — 가독성 (이북리더기 수준의 텍스트 읽힘)
+ *   2순위 — 웹페이지 디자인 (여백의 미, 깔끔한 레이아웃)
+ *   3순위 — 살짝의 게임 dialogue 감성 (과하지 않게)
+ *
+ * 컬러 철학: 너무 쨍한 컬러 ㄴㄴ — 전체적으로 채도를 낮춰 눈 피로 최소화
+ *
+ * 적용: default/public/css/user.css 에 이 파일의 내용을 붙여넣거나,
+ *       SillyTavern 설정 > 사용자 CSS 입력창에 붙여넣으세요.
+ */
+
+/* ─────────────────────────────────────────────
+   0. 웹폰트 — Pretendard (jsDelivr CDN)
+───────────────────────────────────────────── */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+/* ─────────────────────────────────────────────
+   1. 컬러 팔레트 & CSS 변수
+   — 채도 낮은 웜톤 크림 라이트 테마
+───────────────────────────────────────────── */
+:root {
+    /* 커스텀 팔레트 */
+    --cs-bg:          #F5F1EB;          /* 메인 배경 — 웜 크림 */
+    --cs-panel:       rgba(255, 252, 248, 0.92); /* 패널/카드 배경 */
+    --cs-panel-alt:   rgba(234, 229, 222, 0.80); /* 대안 패널 배경 */
+    --cs-border:      rgba(160, 148, 138, 0.22); /* 테두리 */
+    --cs-text:        #2A2420;          /* 본문 — 웜 차콜 */
+    --cs-text-muted:  #6A6058;          /* 보조 텍스트 */
+    --cs-accent:      #8A7A70;          /* 주 강조 — 뮤트 타프 */
+    --cs-accent-alt:  #7A9070;          /* 보조 강조 — 뮤트 세이지 */
+    --cs-user-mes:    rgba(215, 208, 200, 0.45); /* 사용자 메시지 배경 */
+    --cs-bot-mes:     rgba(245, 241, 235, 0.70); /* 봇 메시지 배경 */
+    --cs-hover:       rgba(160, 148, 138, 0.12); /* 호버 오버레이 */
+    --cs-active:      rgba(138, 122, 112, 0.20); /* 활성 오버레이 */
+
+    /* SillyTavern 테마 변수 오버라이드 */
+    --SmartThemeBodyColor:            #2A2420;
+    --SmartThemeEmColor:              #6A6058;
+    --SmartThemeUnderlineColor:       #7A9070;
+    --SmartThemeQuoteColor:           #8A7A70;
+    --SmartThemeBlurTintColor:        rgba(245, 241, 235, 1);
+    --SmartThemeChatTintColor:        rgba(245, 241, 235, 1);
+    --SmartThemeUserMesBlurTintColor: rgba(215, 208, 200, 0.45);
+    --SmartThemeBotMesBlurTintColor:  rgba(245, 241, 235, 0.70);
+    --SmartThemeShadowColor:          rgba(0, 0, 0, 0);   /* 그림자 일체 금지 */
+    --SmartThemeBorderColor:          rgba(160, 148, 138, 0.22);
+
+    /* 폰트 & 간격 */
+    --mainFontFamily: 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', sans-serif;
+    --mainFontSize:   15px;
+
+    /* 아이콘 & 상단바 소형화 */
+    --topBarIconSize:  1.55rem;
+    --bottomFormIconSize: 1.45rem;
+}
+
+/* ─────────────────────────────────────────────
+   2. 글로벌 리셋 & 베이스
+───────────────────────────────────────────── */
+* {
+    text-shadow: none !important; /* 그림자 일체 금지 */
+    box-shadow:  none !important;
+}
+
+body {
+    background-color: var(--cs-bg) !important;
+    color:            var(--cs-text) !important;
+    font-family:      var(--mainFontFamily) !important;
+    font-size:        var(--mainFontSize) !important;
+    line-height:      1.4;
+}
+
+/* 스크롤바 숨김 */
+* {
+    scrollbar-width: none !important;
+}
+*::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* 공통 배경 */
+#bg1,
+html,
+body.loaded {
+    background-color: var(--cs-bg) !important;
+}
+
+/* ─────────────────────────────────────────────
+   3. 채팅 영역 — 가독성 최우선
+───────────────────────────────────────────── */
+#chat {
+    background: transparent;
+    padding: 0 12px;
+}
+
+/* 메시지 기본 구조 */
+.mes {
+    flex-direction: column;
+    padding:        6px 0;
+    border:         none;
+    background:     transparent;
+}
+
+/* 봇 메시지 */
+.mes:not([is_user="true"]) .mes_block {
+    background:    var(--cs-bot-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 10px;
+    padding:       12px 16px;
+}
+
+/* 사용자 메시지 */
+.mes[is_user="true"] .mes_block {
+    background:    var(--cs-user-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 10px;
+    padding:       12px 16px;
+}
+
+/* 메시지 텍스트 — 이북리더기 수준의 가독성 */
+.mes_text {
+    font-family: var(--mainFontFamily) !important;
+    font-size:   var(--mainFontSize)   !important;
+    line-height: 1.9rem                !important;
+    color:       var(--cs-text)        !important;
+    text-align:  justify;
+    text-justify: inter-word;
+    word-break:   keep-all;
+}
+
+/* 캐릭터 이름 */
+.ch_name .name_text {
+    font-size:   0.82em;
+    font-weight: 600;
+    color:       var(--cs-accent);
+    letter-spacing: 0.01em;
+}
+
+/* 메시지 버튼 — 호버 시 표시 */
+.mes_buttons {
+    opacity:    0      !important;
+    transform:  translateY(-16px) !important;
+    transition: opacity .28s cubic-bezier(.25,.1,.25,1),
+                transform .28s cubic-bezier(.25,.1,.25,1) !important;
+}
+.mes:hover .mes_buttons {
+    opacity:   1 !important;
+    transform: translateY(0) !important;
+}
+
+/* 메시지 아바타 */
+.mesAvatarWrapper .avatar img {
+    border-radius: 8px;
+    opacity: 0.92;
+}
+
+/* ─────────────────────────────────────────────
+   4. 상단바 — 투명 배경, 아이콘 소형화
+───────────────────────────────────────────── */
+#top-bar,
+#top-bar .top-bar-bg {
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+#top-bar .fa-solid,
+#top-bar .fa-regular,
+#top-bar i {
+    font-size: var(--topBarIconSize) !important;
+}
+
+/* 상단 패널 최대 높이 80dvh */
+#left-nav-panel,
+#right-nav-panel {
+    max-height: 80dvh !important;
+    overflow-y: auto;
+}
+
+/* 채팅창이 상단바까지 보이도록 */
+#sheld {
+    padding-top: 0 !important;
+}
+
+#chat {
+    padding-top: 4px;
+}
+
+/* ─────────────────────────────────────────────
+   5. 패널 & 드로어 — 컴팩트 & 심플
+───────────────────────────────────────────── */
+.drawer-content,
+.inline-drawer-content {
+    background:    var(--cs-panel) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 10px;
+    padding:       10px 12px !important;
+    line-height:   1.4;
+}
+
+/* 헤더 그라데이션 제거 */
+h1, h2, h3, h4, h5, h6,
+.title_restorable,
+.inline-drawer-header {
+    background: transparent !important;
+    color:      var(--cs-text) !important;
+    font-weight: 600;
+}
+
+/* ─────────────────────────────────────────────
+   6. 버튼 & 입력창 — 심플 스타일
+───────────────────────────────────────────── */
+.menu_button,
+.right_menu_button,
+button {
+    background:    transparent;
+    border:        1px solid var(--cs-border);
+    border-radius: 7px;
+    color:         var(--cs-text);
+    transition:    background .18s, border-color .18s;
+}
+
+.menu_button:hover,
+.right_menu_button:hover,
+button:hover {
+    background:    var(--cs-hover) !important;
+    border-color:  var(--cs-accent) !important;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="search"],
+textarea,
+select {
+    background:    var(--cs-panel) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 7px;
+    color:         var(--cs-text) !important;
+    font-family:   var(--mainFontFamily) !important;
+    padding:       5px 9px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline:      none;
+    border-color: var(--cs-accent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   7. Send Form — 하단 입력창
+───────────────────────────────────────────── */
+#send_form {
+    background:    var(--cs-panel) !important;
+    border-top:    1px solid var(--cs-border) !important;
+    border-radius: 10px 10px 0 0;
+    padding:       8px 12px !important;
+}
+
+#send_textarea {
+    background:  transparent !important;
+    border:      none !important;
+    color:       var(--cs-text) !important;
+    font-family: var(--mainFontFamily) !important;
+    font-size:   var(--mainFontSize) !important;
+    line-height: 1.6;
+    resize:      none;
+}
+
+#send_form .fa-solid,
+#send_form .fa-regular,
+#send_form i {
+    font-size: var(--bottomFormIconSize) !important;
+    color:     var(--cs-text-muted) !important;
+}
+
+#send_form .fa-solid:hover,
+#send_form .fa-regular:hover,
+#send_form i:hover {
+    color: var(--cs-accent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   8. 캐릭터 선택창 & 페르소나창 — 가독성+디자인
+───────────────────────────────────────────── */
+.character_select,
+.character_select_textarea {
+    background:    var(--cs-panel) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 10px;
+    padding:       8px 10px;
+    transition:    background .18s, border-color .18s;
+}
+
+.character_select:hover {
+    background:    var(--cs-hover) !important;
+    border-color:  var(--cs-accent) !important;
+}
+
+.character_select .ch_name {
+    font-size:   0.84em;
+    font-weight: 600;
+    color:       var(--cs-text);
+}
+
+.character_select .character_description {
+    font-size:   0.76em;
+    color:       var(--cs-text-muted);
+    line-height: 1.4;
+    margin-top:  3px;
+}
+
+/* 페르소나 패널 */
+#persona_description,
+#persona_name_input {
+    font-family: var(--mainFontFamily) !important;
+    line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   9. QR 팝업 — 예쁜 팝업 형태 & 스크롤 가능
+───────────────────────────────────────────── */
+#qr--bar,
+.qr--popup {
+    background:    var(--cs-panel) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 12px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    max-height: 68dvh;
+    overflow-y: auto;
+    padding:    10px;
+}
+
+.qr--button {
+    background:    transparent;
+    border:        1px solid var(--cs-border);
+    border-radius: 7px;
+    color:         var(--cs-text);
+    padding:       4px 10px;
+    font-size:     0.82em;
+    transition:    background .18s, transform .18s, border-color .18s;
+    white-space:   nowrap;
+}
+
+.qr--button:hover {
+    background:    var(--cs-hover);
+    border-color:  var(--cs-accent);
+    transform:     translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────
+   10. 팝업 / 다이얼로그
+───────────────────────────────────────────── */
+.popup {
+    background:    var(--cs-panel) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 12px;
+    color:         var(--cs-text) !important;
+}
+
+.popup .popup-title {
+    font-size:   1.05em;
+    font-weight: 700;
+    color:       var(--cs-text);
+    border-bottom: 1px solid var(--cs-border);
+    padding-bottom: 6px;
+    margin-bottom:  10px;
+}
+
+/* ─────────────────────────────────────────────
+   11. 태그 시스템
+───────────────────────────────────────────── */
+.tag {
+    background:    var(--cs-panel-alt) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 5px;
+    font-size:     0.76em;
+    padding:       2px 7px;
+    color:         var(--cs-text-muted) !important;
+}
+
+.tag.selected {
+    background:  var(--cs-active) !important;
+    color:       var(--cs-text)   !important;
+    border-color: var(--cs-accent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   12. 슬라이더 & 범위 입력
+───────────────────────────────────────────── */
+input[type="range"] {
+    accent-color: var(--cs-accent) !important;
+}
+
+/* ─────────────────────────────────────────────
+   13. 코드 블록 — 읽기 쉬운 모노스페이스
+───────────────────────────────────────────── */
+.mes_text pre,
+.mes_text code {
+    background:    var(--cs-panel-alt) !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 6px;
+    font-size:     0.86em;
+    color:         var(--cs-text) !important;
+    padding:       2px 5px;
+}
+
+.mes_text pre {
+    padding: 10px 14px;
+    overflow-x: auto;
+    line-height: 1.5;
+}
+
+/* ─────────────────────────────────────────────
+   14. 선택 영역 하이라이트
+───────────────────────────────────────────── */
+::selection {
+    background: rgba(138, 122, 112, 0.28);
+    color: var(--cs-text);
+}
+
+/* ─────────────────────────────────────────────
+   15. 토스트 알림 — 심플
+───────────────────────────────────────────── */
+#toast-container .toast {
+    background:    var(--cs-panel)  !important;
+    border:        1px solid var(--cs-border) !important;
+    border-radius: 9px;
+    color:         var(--cs-text)   !important;
+    opacity:       0.97;
+}
