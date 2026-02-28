@@ -90,14 +90,14 @@ body.loaded {
 }
 
 /* ─────────────────────────────────────────────
-   3. 채팅 영역 — 가독성 최우선
+   3. 채팅 영역 공통 기반 — 가독성 최우선
 ───────────────────────────────────────────── */
 #chat {
     background: transparent;
     padding: 0 12px;
 }
 
-/* 메시지 기본 구조 */
+/* 메시지 기본 구조 (모든 모드 공통) */
 .mes {
     flex-direction: column;
     padding:        6px 0;
@@ -105,23 +105,7 @@ body.loaded {
     background:     transparent;
 }
 
-/* 봇 메시지 */
-.mes:not([is_user="true"]) .mes_block {
-    background:    var(--cs-bot-mes);
-    border:        1px solid var(--cs-border);
-    border-radius: 10px;
-    padding:       12px 16px;
-}
-
-/* 사용자 메시지 */
-.mes[is_user="true"] .mes_block {
-    background:    var(--cs-user-mes);
-    border:        1px solid var(--cs-border);
-    border-radius: 10px;
-    padding:       12px 16px;
-}
-
-/* 메시지 텍스트 — 이북리더기 수준의 가독성 */
+/* 메시지 텍스트 공통 — 이북리더기 수준의 가독성 */
 .mes_text {
     font-family: var(--mainFontFamily) !important;
     font-size:   var(--mainFontSize)   !important;
@@ -132,7 +116,7 @@ body.loaded {
     word-break:   keep-all;
 }
 
-/* 캐릭터 이름 */
+/* 캐릭터 이름 공통 */
 .ch_name .name_text {
     font-size:   0.82em;
     font-weight: 600;
@@ -140,12 +124,85 @@ body.loaded {
     letter-spacing: 0.01em;
 }
 
+/* ─────────────────────────────────────────────
+   3A. 채팅 모드 — 플랫버블 (기본값)
+   — 게임 대사 dialogue 풍, char·user 모두 전폭 카드
+───────────────────────────────────────────── */
+/* 봇 메시지 */
+body:not(.bubblechat):not(.documentstyle) .mes:not([is_user="true"]) .mes_block {
+    background:    var(--cs-bot-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 10px;
+    padding:       12px 16px;
+}
+
+/* 사용자 메시지 */
+body:not(.bubblechat):not(.documentstyle) .mes[is_user="true"] .mes_block {
+    background:    var(--cs-user-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 10px;
+    padding:       12px 16px;
+}
+
+/* ─────────────────────────────────────────────
+   3B. 채팅 모드 — 말풍선 (body.bubblechat)
+   — 간격 넉넉하게, 채팅 여러개 보낸 것처럼
+───────────────────────────────────────────── */
+body.bubblechat .mes {
+    padding: 10px 0;
+}
+
+body.bubblechat .mes:not([is_user="true"]) .mes_block {
+    background:    var(--cs-bot-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 4px 14px 14px 14px;
+    padding:       10px 14px;
+    max-width:     80%;
+    align-self:    flex-start;
+    margin-bottom: 2px;
+}
+
+body.bubblechat .mes[is_user="true"] .mes_block {
+    background:    var(--cs-user-mes);
+    border:        1px solid var(--cs-border);
+    border-radius: 14px 4px 14px 14px;
+    padding:       10px 14px;
+    max-width:     80%;
+    align-self:    flex-end;
+    margin-bottom: 2px;
+}
+
+body.bubblechat .mes[is_user="true"] .ch_name {
+    text-align: right;
+}
+
+/* ─────────────────────────────────────────────
+   3C. 채팅 모드 — 문서 (body.documentstyle)
+   — 이북리더기 수준 가독성, 깔끔한 문서 스타일
+───────────────────────────────────────────── */
+body.documentstyle .mes:not([is_user="true"]) .mes_block,
+body.documentstyle .mes[is_user="true"] .mes_block {
+    background:    transparent !important;
+    border:        none !important;
+    border-bottom: 1px solid var(--cs-border) !important;
+    border-radius: 0;
+    padding:       14px 4px;
+}
+
+body.documentstyle .mes_text {
+    line-height: 2.0rem !important;
+}
+
+body.documentstyle .ch_name {
+    margin-bottom: 4px;
+}
+
 /* 메시지 버튼 — 호버 시 표시 */
 .mes_buttons {
     opacity:    0      !important;
-    transform:  translateY(-16px) !important;
-    transition: opacity .28s cubic-bezier(.25,.1,.25,1),
-                transform .28s cubic-bezier(.25,.1,.25,1) !important;
+    transform:  translateY(-20px) !important;
+    transition: opacity .3s cubic-bezier(.25,.1,.25,1),
+                transform .3s cubic-bezier(.25,.1,.25,1) !important;
 }
 .mes:hover .mes_buttons {
     opacity:   1 !important;
