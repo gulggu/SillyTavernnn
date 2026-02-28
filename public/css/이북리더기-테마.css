@@ -1,23 +1,23 @@
 /* =============================================================================
-   이북리더기 테마 (E-Book Reader Theme)
+   이북리더기 테마 v2.0 (E-Book Reader Theme — Game Dialog Edition)
    SillyTavern 사용자 지정 CSS 테마
-   버전: 1.0.0
    ─────────────────────────────────────────────────────────────────────────────
    적용 방법 (How to Apply):
      SillyTavern → User Settings → Custom CSS 텍스트 박스에
      이 파일의 전체 내용을 붙여넣기 하세요.
 
      권장 설정:
-       • Chat Style : Document  (채팅 스타일을 '문서' 모드로 설정)
-       • Blur Strength : 0      (배경 블러 없음)
+       • Blur Strength : 0  (배경 블러 없음)
        • Text Shadows : 꺼짐
    ─────────────────────────────────────────────────────────────────────────────
    디자인 컨셉:
-     종이 책·전자책 리더(Kindle / Kobo)처럼 따뜻한 크림색 배경 위에
-     깔끔한 세리프 서체로 텍스트가 흐르는 몰입형 독서 경험을 제공합니다.
-     불필요한 그림자, 블러, 형광색 강조를 모두 제거하여
-     콘텐츠 자체에 완전히 집중할 수 있도록 설계되었습니다.
+     따뜻한 크림/아이보리 팔레트를 유지하되, RPG/비주얼노벨 게임 다이얼로그
+     느낌의 카드형 채팅 UI. Pretendard 폰트, 적절한 줄간격, 심플한 상단바,
+     팝업형 QR 바, 20대 여성의 미감에 맞춘 섬세한 디테일.
    ============================================================================= */
+
+/* 프리텐다드 폰트 — 가변 서브셋 (CDN) */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
 
 
 /* ─────────────────────────────────────────────
@@ -25,72 +25,75 @@
    ───────────────────────────────────────────── */
 
 :root {
-    /* 텍스트 색상 — 따뜻한 다크 브라운 (형광 흰색 대신) */
-    --SmartThemeBodyColor:    #2d2418;
-    --SmartThemeEmColor:      #7a6853;
+    /* 텍스트 색상 — 따뜻한 다크 브라운 */
+    --SmartThemeBodyColor:      #2d2418;
+    --SmartThemeEmColor:        #7a6853;
     --SmartThemeUnderlineColor: #9b7d45;
-    --SmartThemeQuoteColor:   #8c5a2b;
+    --SmartThemeQuoteColor:     #8c5a2b;
 
     /* 배경 틴트 — 크림/아이보리 종이색 */
-    --SmartThemeBlurTintColor:     rgba(244, 238, 224, 1);
-    --SmartThemeChatTintColor:     rgba(248, 243, 230, 1);
+    --SmartThemeBlurTintColor:  rgba(244, 238, 224, 1);
+    --SmartThemeChatTintColor:  rgba(248, 243, 230, 1);
 
     /* 메시지 배경 */
     --SmartThemeUserMesBlurTintColor: rgba(218, 206, 185, 0.35);
     --SmartThemeBotMesBlurTintColor:  rgba(248, 243, 230, 0.0);
 
     /* 그림자·테두리 — 매우 은은하게 */
-    --SmartThemeShadowColor:  rgba(60, 45, 20, 0.08);
-    --SmartThemeBorderColor:  rgba(160, 130, 90, 0.28);
+    --SmartThemeShadowColor: rgba(60, 45, 20, 0.08);
+    --SmartThemeBorderColor: rgba(160, 130, 90, 0.28);
 
-    /* 체크박스 계산용 (텍스트 색상에 맞게) */
+    /* 체크박스 계산용 */
     --SmartThemeCheckboxBgColorR: 45;
     --SmartThemeCheckboxBgColorG: 36;
     --SmartThemeCheckboxBgColorB: 24;
 
-    /* 폰트: 책처럼 세리프 계열 우선 */
-    --mainFontFamily: "Georgia", "Noto Serif KR", "Noto Serif", "Noto Sans", serif;
+    /* 폰트 — Pretendard 우선, 세리프 폴백 */
+    --mainFontFamily: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans", sans-serif;
     --mainFontSize:   16px;
 
-    /* 채팅 영역 너비 — 읽기 편한 황금비 너비 */
+    /* 채팅 영역 너비 */
     --sheldWidth: 54vw;
 
     /* 블러·그림자 제거 */
     --blurStrength: 0;
     --shadowWidth:  0;
 
-    /* 애니메이션 — 부드럽게 */
-    --animation-duration: 180ms;
+    /* 애니메이션 */
+    --animation-duration: 160ms;
 }
 
 
 /* ─────────────────────────────────────────────
-   2. 전역 리셋 — 텍스트 그림자 완전 제거
+   2. 전역 리셋 — 텍스트 그림자 & 기본 폰트
    ───────────────────────────────────────────── */
 
 * {
     text-shadow: none !important;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans", sans-serif;
 }
 
 
 /* ─────────────────────────────────────────────
-   3. 배경 — 크림 종이 질감
+   3. 배경 & 기본 줄간격
    ───────────────────────────────────────────── */
 
 body {
     background-color: #f4efe4;
     color-scheme: only light;
+    line-height: 1.5rem;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans", sans-serif !important;
 }
 
 /* 배경 이미지가 설정된 경우 어둡게 하는 오버레이 제거 */
 #bg1 {
     filter: none !important;
-    opacity: 0.08 !important; /* 배경 이미지 사용 시 은은하게 */
+    opacity: 0.08 !important;
 }
 
 
 /* ─────────────────────────────────────────────
-   4. 스크롤바 — 책 페이지 느낌
+   4. 스크롤바 — 심플하게
    ───────────────────────────────────────────── */
 
 ::-webkit-scrollbar {
@@ -114,30 +117,31 @@ body {
 
 
 /* ─────────────────────────────────────────────
-   5. 상단 바 (Top Bar)
+   5. 상단 바 (Top Bar) — 심플 & 클린
    ───────────────────────────────────────────── */
 
 #top-bar {
     background-color: #ede7d8 !important;
+    background-image: none !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    box-shadow: 0 1px 0 rgba(160, 130, 90, 0.25),
-                0 2px 8px rgba(60, 45, 20, 0.06) !important;
-    border-bottom: 1px solid rgba(160, 130, 90, 0.22);
+    box-shadow: 0 1px 0 rgba(160, 130, 90, 0.2) !important;
+    border-bottom: 1px solid rgba(160, 130, 90, 0.18) !important;
 }
 
-/* 상단 바 아이콘 색상 */
+/* 상단 바 아이콘 — 작게, 색상 정돈 */
 #top-bar .menu_button,
 #top-bar .fa-solid,
 #top-bar .fa-regular,
 #top-bar i {
     color: #5a4530 !important;
     text-shadow: none !important;
+    font-size: 0.82rem !important;
 }
 
 #top-bar .menu_button:hover {
     color: #2d2418 !important;
-    background-color: rgba(160, 130, 90, 0.18) !important;
+    background-color: rgba(160, 130, 90, 0.16) !important;
 }
 
 
@@ -155,52 +159,89 @@ body {
 
 
 /* ─────────────────────────────────────────────
-   7. 메시지 스타일
+   7. 메시지 스타일 — 게임 다이얼로그 카드
    ───────────────────────────────────────────── */
 
-/* 공통 메시지 컨테이너 */
+/* 메시지 외부 컨테이너 — 여백만, 배경 없음 */
 .mes {
     border: none !important;
-    border-bottom: 1px solid rgba(160, 130, 90, 0.15) !important;
     border-radius: 0 !important;
-    padding: 16px 12px 14px 12px !important;
+    padding: 10px 4px !important;
     background: transparent !important;
     box-shadow: none !important;
-    transition: background-color var(--animation-duration) ease;
+    transition: none;
 }
 
 .mes:last-child {
     border-bottom: none !important;
 }
 
-.mes:hover {
-    background-color: rgba(160, 130, 90, 0.05) !important;
-}
-
-/* 봇(AI) 메시지 배경 — 순수한 크림 */
-.mes:not([is_user="true"]) {
+/* 사용자 메시지 아바타 정렬 */
+.mes[is_user="true"] {
     background-color: transparent !important;
 }
 
-/* 사용자 메시지 배경 — 살짝 따뜻한 톤 */
-.mes[is_user="true"] {
-    background-color: rgba(218, 206, 185, 0.22) !important;
+/* ━━━ 게임 다이얼로그 카드 — mes_block ━━━ */
+.mes_block {
+    background: rgba(252, 249, 242, 0.92) !important;
+    border: 1px solid rgba(160, 130, 90, 0.22) !important;
+    border-radius: 12px !important;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(60, 45, 20, 0.07) !important;
+    padding: 0 !important;
+}
+
+/* 봇 메시지 카드 — 왼쪽 액센트 라인 */
+.mes:not([is_user="true"]) .mes_block {
+    border-left: 3px solid rgba(140, 90, 43, 0.42) !important;
+}
+
+/* 사용자 메시지 카드 — 오른쪽 액센트 */
+.mes[is_user="true"] .mes_block {
+    border-right: 3px solid rgba(122, 90, 53, 0.35) !important;
+    border-left: 1px solid rgba(160, 130, 90, 0.22) !important;
+    background: rgba(245, 239, 226, 0.88) !important;
+}
+
+/* ━━━ 이름 헤더 영역 ━━━ */
+.mes_block .ch_name {
+    background: rgba(160, 130, 90, 0.1) !important;
+    border-bottom: 1.5px solid rgba(160, 130, 90, 0.22) !important;
+    padding: 8px 14px 7px !important;
+    margin: 0 !important;
+    min-height: unset !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    border-radius: 0 !important;
+}
+
+/* 메시지 텍스트 영역 패딩 */
+.mes_block .mes_text {
+    padding: 13px 15px 11px !important;
+}
+
+/* 메시지 버튼 영역 패딩 */
+.mes_block .mes_buttons {
+    padding: 2px 10px 6px !important;
 }
 
 /* 메시지 텍스트 블록 */
 .mes_text {
     color: #2d2418 !important;
-    font-family: "Georgia", "Noto Serif KR", "Noto Serif", "Noto Sans", serif !important;
+    font-family: "Pretendard Variable", Pretendard, "Noto Sans KR", "Noto Sans", sans-serif !important;
     font-size: 16px !important;
-    line-height: 1.82 !important;
-    letter-spacing: 0.012em !important;
+    line-height: 1.9rem !important;
+    letter-spacing: 0.01em !important;
     word-break: keep-all !important;
     overflow-wrap: break-word;
+    text-align: justify !important;
+    text-align-last: left !important;
 }
 
 /* 단락 사이 여백 */
 .mes_text p {
-    margin: 0 0 0.85em 0;
+    margin: 0 0 0.75em 0;
 }
 
 .mes_text p:last-child {
@@ -221,7 +262,7 @@ body {
     font-weight: 700;
 }
 
-/* 인용 (Quote) — 대화문 강조 */
+/* 인용 (Quote) */
 .mes_text q,
 .mes_text blockquote {
     color: #8c5a2b !important;
@@ -282,7 +323,7 @@ body {
 .mes_text ul,
 .mes_text ol {
     padding-left: 1.5em;
-    margin: 0.5em 0 0.85em 0;
+    margin: 0.5em 0 0.75em 0;
 }
 
 .mes_text li {
@@ -293,7 +334,7 @@ body {
 .mes_text h1, .mes_text h2, .mes_text h3,
 .mes_text h4, .mes_text h5, .mes_text h6 {
     color: #2d2418 !important;
-    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
     font-weight: 700;
     margin: 1.2em 0 0.5em 0;
     line-height: 1.4;
@@ -305,22 +346,27 @@ body {
 
 
 /* ─────────────────────────────────────────────
-   8. 캐릭터 이름 & 메시지 헤더
+   8. 캐릭터 이름 & 메시지 헤더 (게임 다이얼로그)
    ───────────────────────────────────────────── */
 
 .ch_name {
-    margin-bottom: 4px !important;
+    margin-bottom: 0 !important;
 }
 
 .ch_name .name_text {
-    color: #5a4530 !important;
-    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
-    font-size: 0.82em !important;
+    color: #5a3e25 !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+    font-size: 0.84rem !important;
     font-weight: 700 !important;
-    letter-spacing: 0.05em !important;
-    text-transform: uppercase;
+    letter-spacing: 0.06em !important;
+    text-transform: none !important;
     text-shadow: none !important;
-    opacity: 0.75;
+    opacity: 1 !important;
+}
+
+/* 봇 이름 — 살짝 강조 */
+.mes:not([is_user="true"]) .ch_name .name_text {
+    color: #5a3e25 !important;
 }
 
 /* 사용자 이름 */
@@ -330,9 +376,9 @@ body {
 
 /* 타임스탬프 */
 .timestamp {
-    color: #b3a08a !important;
-    font-size: 0.72em !important;
-    font-family: "Noto Sans", sans-serif !important;
+    color: #c2ae94 !important;
+    font-size: 0.7rem !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
 }
 
 
@@ -353,41 +399,42 @@ body {
 
 
 /* ─────────────────────────────────────────────
-   10. 입력 폼 (Send Form)
+   10. 입력 폼 (Send Form) — 하단 바 아이콘 작게
    ───────────────────────────────────────────── */
 
 #send_form {
     background-color: #ede7d8 !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
+    background-image: none !important;
     border: none !important;
-    border-top: 1px solid rgba(160, 130, 90, 0.25) !important;
+    border-top: 1px solid rgba(160, 130, 90, 0.2) !important;
     border-radius: 0 !important;
-    box-shadow: 0 -2px 8px rgba(60, 45, 20, 0.05) !important;
+    box-shadow: none !important;
 }
 
 /* 텍스트 입력창 */
 #send_textarea {
     background-color: #faf6ed !important;
     color: #2d2418 !important;
-    border: 1px solid rgba(160, 130, 90, 0.3) !important;
-    border-radius: 6px !important;
-    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    border: 1px solid rgba(160, 130, 90, 0.28) !important;
+    border-radius: 8px !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
     font-size: 15px !important;
     line-height: 1.65 !important;
-    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.06) !important;
+    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.05) !important;
     caret-color: #8c5a2b;
 }
 
 #send_textarea:focus {
-    border-color: rgba(140, 90, 43, 0.5) !important;
-    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.06),
-                0 0 0 2px rgba(140, 90, 43, 0.12) !important;
+    border-color: rgba(140, 90, 43, 0.45) !important;
+    box-shadow: inset 0 1px 3px rgba(60, 45, 20, 0.05),
+                0 0 0 2px rgba(140, 90, 43, 0.1) !important;
     outline: none !important;
 }
 
 #send_textarea::placeholder {
-    color: #b3a08a !important;
+    color: #c2ae94 !important;
 }
 
 /* 전송 버튼 */
@@ -402,13 +449,14 @@ body {
     border-radius: 6px;
 }
 
-/* 하단 폼 아이콘 버튼 */
+/* 하단 폼 아이콘 — 작게 */
 #send_form .menu_button,
 #send_form .fa-solid,
 #send_form .fa-regular,
 #send_form i {
-    color: #7a6853 !important;
+    color: #8a7560 !important;
     text-shadow: none !important;
+    font-size: 0.82rem !important;
 }
 
 #send_form .menu_button:hover {
@@ -437,7 +485,7 @@ body {
 
 
 /* ─────────────────────────────────────────────
-   12. 사이드 패널 (Left / Right Nav)
+   12. 사이드 패널 (Left / Right Nav) — 높이 80vh
    ───────────────────────────────────────────── */
 
 #left-nav-panel,
@@ -445,22 +493,25 @@ body {
     background-color: #ede7d8 !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
-    border-color: rgba(160, 130, 90, 0.25) !important;
-    box-shadow: 2px 0 12px rgba(60, 45, 20, 0.08) !important;
+    border-color: rgba(160, 130, 90, 0.22) !important;
+    box-shadow: 2px 0 16px rgba(60, 45, 20, 0.09) !important;
     color: #2d2418 !important;
+    max-height: 80vh !important;
+    overflow-y: auto;
 }
 
 /* 패널 내 텍스트 */
 #left-nav-panel *,
 #right-nav-panel * {
     color: #2d2418;
+    line-height: 1.5rem;
 }
 
 /* 서랍(drawer) 컨텐츠 */
 .drawer-content {
     background-color: #f0ead9 !important;
     backdrop-filter: none !important;
-    border-color: rgba(160, 130, 90, 0.2) !important;
+    border-color: rgba(160, 130, 90, 0.18) !important;
 }
 
 /* 패널 탭 버튼 */
@@ -468,6 +519,7 @@ body {
 .left_menu_button {
     color: #5a4530 !important;
     text-shadow: none !important;
+    font-size: 0.82rem !important;
 }
 
 .right_menu_button:hover,
@@ -475,7 +527,7 @@ body {
 .right_menu_button.selected,
 .left_menu_button.selected {
     color: #2d2418 !important;
-    background-color: rgba(160, 130, 90, 0.2) !important;
+    background-color: rgba(160, 130, 90, 0.18) !important;
 }
 
 
@@ -497,7 +549,8 @@ body {
 
 .popup-title {
     color: #2d2418 !important;
-    font-family: "Georgia", "Noto Serif KR", "Noto Serif", serif !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+    font-weight: 700 !important;
     border-bottom: 1px solid rgba(160, 130, 90, 0.25) !important;
 }
 
@@ -592,36 +645,50 @@ input[type="radio"] {
 
 
 /* ─────────────────────────────────────────────
-   16. 캐릭터 목록 패널
+   16. 캐릭터 목록 패널 — 예쁜 카드 디자인
    ───────────────────────────────────────────── */
 
 #rm_print_characters_block {
     background-color: transparent !important;
+    gap: 6px;
 }
 
 .character_select {
-    background-color: rgba(160, 130, 90, 0.08) !important;
-    border: 1px solid rgba(160, 130, 90, 0.18) !important;
-    border-radius: 6px !important;
+    background-color: rgba(252, 249, 242, 0.9) !important;
+    border: 1px solid rgba(160, 130, 90, 0.2) !important;
+    border-radius: 10px !important;
     color: #2d2418 !important;
-    transition: all var(--animation-duration) ease;
+    transition: all 160ms ease !important;
+    box-shadow: 0 1px 5px rgba(60, 45, 20, 0.05) !important;
+    padding: 8px 10px !important;
 }
 
 .character_select:hover,
 .character_select.selected_recently {
-    background-color: rgba(160, 130, 90, 0.18) !important;
-    border-color: rgba(140, 90, 43, 0.35) !important;
+    background-color: rgba(255, 252, 244, 1) !important;
+    border-color: rgba(140, 90, 43, 0.3) !important;
+    box-shadow: 0 3px 12px rgba(60, 45, 20, 0.1) !important;
+    transform: translateY(-1px);
+}
+
+.character_select.selected_recently {
+    border-left: 3px solid rgba(140, 90, 43, 0.45) !important;
 }
 
 /* 캐릭터 이름 */
 .ch_name_menu {
     color: #2d2418 !important;
     text-shadow: none !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
 }
 
 /* 최근 채팅 설명 */
 .ch_description {
-    color: #7a6853 !important;
+    color: #9b8870 !important;
+    font-size: 0.78rem !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
 }
 
 
@@ -687,20 +754,34 @@ input[type="radio"] {
 
 
 /* ─────────────────────────────────────────────
-   20. 시스템 메시지
+   20. 시스템 메시지 — 카드 스타일 제외
    ───────────────────────────────────────────── */
 
 .mes[is_system="true"] {
     border-bottom: none !important;
-    padding: 6px 12px !important;
+    padding: 4px 8px !important;
+}
+
+/* 시스템 메시지는 카드 배경 없이 투명하게 */
+.mes[is_system="true"] .mes_block {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+}
+
+.mes[is_system="true"] .mes_block .ch_name {
+    background: transparent !important;
+    border-bottom: none !important;
 }
 
 .mes[is_system="true"] .mes_text {
     color: #9b8870 !important;
     font-size: 0.82em !important;
     font-style: italic;
-    text-align: center;
-    line-height: 1.5 !important;
+    text-align: center !important;
+    text-align-last: center !important;
+    line-height: 1.5rem !important;
 }
 
 
@@ -748,25 +829,41 @@ input[type="radio"] {
 
 
 /* ─────────────────────────────────────────────
-   23. 퀵 리플라이 (Quick Reply) 바
+   23. 퀵 리플라이 (Quick Reply) 바 — 팝업 카드
    ───────────────────────────────────────────── */
 
 #qr--bar {
-    background-color: #ede7d8 !important;
-    border-top: 1px solid rgba(160, 130, 90, 0.2) !important;
+    background-color: #fdf9f2 !important;
+    border: 1px solid rgba(160, 130, 90, 0.28) !important;
+    border-radius: 14px !important;
+    box-shadow: 0 -4px 18px rgba(60, 45, 20, 0.12),
+                0 4px 14px rgba(60, 45, 20, 0.08) !important;
+    border-top: 1px solid rgba(160, 130, 90, 0.22) !important;
+    padding: 8px 10px !important;
+    margin: 0 8px 5px !important;
+    max-height: 130px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .qr--button {
     background-color: rgba(160, 130, 90, 0.12) !important;
-    border: 1px solid rgba(160, 130, 90, 0.28) !important;
+    border: 1px solid rgba(160, 130, 90, 0.26) !important;
     color: #5a4530 !important;
-    border-radius: 5px !important;
+    border-radius: 20px !important;
+    padding: 3px 13px !important;
+    font-size: 0.8rem !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+    font-weight: 500 !important;
     transition: all var(--animation-duration) ease;
 }
 
 .qr--button:hover {
-    background-color: rgba(140, 90, 43, 0.22) !important;
+    background-color: rgba(140, 90, 43, 0.2) !important;
+    border-color: rgba(140, 90, 43, 0.4) !important;
     color: #2d2418 !important;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(60, 45, 20, 0.1) !important;
 }
 
 
@@ -826,11 +923,16 @@ input[type="radio"] {
 
     .mes_text {
         font-size: 15px !important;
-        line-height: 1.78 !important;
+        line-height: 1.75rem !important;
     }
 
     #chat {
-        padding: 0 8px !important;
+        padding: 0 6px !important;
+    }
+
+    #left-nav-panel,
+    #right-nav-panel {
+        max-height: 85vh !important;
     }
 }
 
@@ -841,30 +943,34 @@ input[type="radio"] {
 
     .mes_text {
         font-size: 14px !important;
-        line-height: 1.75 !important;
+        line-height: 1.65rem !important;
         letter-spacing: 0 !important;
+    }
+
+    .mes_block {
+        border-radius: 8px !important;
     }
 }
 
 
 /* ─────────────────────────────────────────────
-   27. 세부 다듬기 — 일관된 책 느낌
+   27. 세부 다듬기 — 일관된 크림/게임 느낌
    ───────────────────────────────────────────── */
 
 /* 포커스 링 색상 통일 */
 :focus-visible {
-    outline-color: rgba(140, 90, 43, 0.5) !important;
+    outline-color: rgba(140, 90, 43, 0.45) !important;
 }
 
 /* 선택 영역 (텍스트 드래그) */
 ::selection {
-    background-color: rgba(140, 90, 43, 0.22) !important;
+    background-color: rgba(140, 90, 43, 0.2) !important;
     color: #2d2418 !important;
 }
 
 /* 구분선 */
 hr {
-    border-color: rgba(160, 130, 90, 0.25) !important;
+    border-color: rgba(160, 130, 90, 0.22) !important;
     border-style: solid !important;
 }
 
@@ -881,5 +987,50 @@ a:hover {
 
 /* 로더 스피너 */
 #loadingAnimation {
-    background-color: rgba(244, 239, 228, 0.9) !important;
+    background-color: rgba(244, 239, 228, 0.92) !important;
+}
+
+
+/* ─────────────────────────────────────────────
+   28. 페르소나·유저 아바타 패널 — 카드 디자인
+   ───────────────────────────────────────────── */
+
+#user_avatar_block {
+    gap: 8px !important;
+    padding: 8px !important;
+}
+
+/* 아바타 컨테이너 카드 */
+#user_avatar_block .avatar-container {
+    border-radius: 10px !important;
+    border: 1px solid rgba(160, 130, 90, 0.2) !important;
+    transition: all 160ms ease !important;
+    background-color: rgba(252, 249, 242, 0.85) !important;
+}
+
+#user_avatar_block .avatar-container:hover {
+    border-color: rgba(140, 90, 43, 0.35) !important;
+    box-shadow: 0 3px 12px rgba(60, 45, 20, 0.1) !important;
+    transform: translateY(-1px);
+}
+
+#user_avatar_block .avatar-container.selected {
+    border: 2px solid rgba(140, 90, 43, 0.55) !important;
+    box-shadow: 0 2px 10px rgba(140, 90, 43, 0.15) !important;
+}
+
+/* 페르소나 검색 바 & 정렬 */
+#persona_search_bar,
+#persona_sort_order {
+    border-radius: 8px !important;
+    border-color: rgba(160, 130, 90, 0.28) !important;
+    background-color: #faf6ed !important;
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+}
+
+/* 페르소나 이름 표시 */
+#persona_controls .persona_name {
+    font-family: "Pretendard Variable", Pretendard, sans-serif !important;
+    font-weight: 600 !important;
+    color: #3a2810 !important;
 }
